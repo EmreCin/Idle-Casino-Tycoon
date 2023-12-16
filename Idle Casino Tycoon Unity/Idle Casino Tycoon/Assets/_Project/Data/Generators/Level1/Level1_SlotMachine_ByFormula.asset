@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4e0509ee7a6fa45a9f2c639a5a29f1, type: 3}
+  m_Name: Level1_SlotMachine_ByFormula
+  m_EditorClassIdentifier: 
+  Id: L1_SlotMachine_Formula
+  Name: Slot Machine
+  MaxLevel: 50
+  UnlockPrice: 0
+  IsUnlocked: 1
+  IdleCapacity_Base: 100
+  IdleCapacity_LevelMultiplier: 1.05
+  Interval_Base: 5
+  Interval_LevelMultiplier: 1.1
+  GeneratingAmount_Base: 10
+  GeneratingAmount_LevelMultiplier: 1.1
