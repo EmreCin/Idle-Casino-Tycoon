@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseSO, Transform>
+public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseSO, GeneratorModel>
 {
-    public void Create(GeneratorController controller, GeneratorDataBaseSO data, Transform parent)
+    public void Create(int level, GeneratorController controller, GeneratorDataBaseSO data, Transform parent)
+    {
+        GeneratorModel newModel = GetData(level, data);
+
+        var newController = GameObject.Instantiate<GeneratorController>(controller, parent);
+
+        newController.gameObject.name = newModel.Id;
+
+        newController.Init(newModel);
+    }
+
+    public GeneratorModel GetData(int level, GeneratorDataBaseSO data)
     {
         GeneratorModel newModel = new GeneratorModel
         {
             Id = data.Id,
             Name = data.Name,
-            Level = 1,
+            Level = level,
             MaxLevel = data.MaxLevel,
             IsUnlocked = data.IsUnlocked,
             UnlockPrice = data.UnlockPrice
@@ -21,12 +32,9 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
         newModel.GeneratingAmount = detail.GeneratingAmount;
         newModel.IdleCapacity = detail.IdleCapacity;
 
-        var newController = GameObject.Instantiate<GeneratorController>(controller, parent);
-
-        newController.gameObject.name = newModel.Id;
-
-        newController.Init(newModel);
+        return newModel;
     }
+    
 }
 
 

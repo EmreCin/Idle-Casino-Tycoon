@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         GeneratorFactory factory = new GeneratorFactory();
         foreach (var generator in levelData.LevelGenerator.GeneratorList)
         {
-            factory.Create(generatorController, generator, generatorContainer);
+            factory.Create(1 ,generatorController, generator, generatorContainer);
         }
 
         isWorldActive = true;
