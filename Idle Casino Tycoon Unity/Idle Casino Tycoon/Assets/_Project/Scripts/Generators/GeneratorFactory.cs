@@ -8,11 +8,15 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
     {
         GeneratorModel newModel = GetData(level, data, wallet);
 
-        var newController = GameObject.Instantiate<GeneratorController>(controller, parent);
-
+        var newController = GameObject.Instantiate<GeneratorController>(controller,data.GeneratorPosition, Quaternion.identity, parent);
         newController.gameObject.name = newModel.Id;
-
         newController.Init(newModel);
+
+        //Create other parts of the generator
+        GameObject.Instantiate(data.Visual, newController.transform);
+
+        GeneratorView view = GameObject.Instantiate(data.View, newController.transform);
+        view.Init(newModel);
     }
 
     public GeneratorModel GetData(int level, GeneratorDataBaseSO data, Wallet wallet)

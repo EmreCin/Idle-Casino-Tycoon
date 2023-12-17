@@ -41,14 +41,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-            timer += Time.deltaTime;
+        //    timer += Time.deltaTime;
 
-        if(isWorldActive && timer >= 1)
-        {
-            MessageBroker.Default.Publish(new GameManager_TimeMessage(timer));
-            timer = 0;
-        }
-
+        //if(isWorldActive && timer >= 1)
+        //{
+        //    MessageBroker.Default.Publish(new GameManager_TimeMessage(timer));
+        //    timer = 0;
+        //}
+        MessageBroker.Default.Publish(new GameManager_TimeMessage(Time.deltaTime));
     }
 
 }
