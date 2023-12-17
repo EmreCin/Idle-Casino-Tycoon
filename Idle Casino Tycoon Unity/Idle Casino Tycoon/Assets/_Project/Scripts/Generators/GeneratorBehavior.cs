@@ -24,4 +24,14 @@ public class GeneratorBehavior
     {
 
     }
+
+    public bool CheckForLevelUp()
+    {
+        return model.UpgradeCurrency.Amount >= model.UpgradeCost;
+    }
+
+    public bool CheckForUnlock()
+    {
+        return model.UpgradeCurrency.Amount >= model.UnlockCost;
+    }
 }

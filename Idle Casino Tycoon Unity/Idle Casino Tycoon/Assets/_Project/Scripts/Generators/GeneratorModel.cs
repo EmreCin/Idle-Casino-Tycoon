@@ -10,7 +10,11 @@ public class GeneratorModel
     public int Level;
     public int MaxLevel;
     public bool IsUnlocked;
-    public float UnlockPrice;
+    public float UnlockCost;
+
+    public Currency UpgradeCurrency;
+    public Currency GenerationCurrency;
+    public float UpgradeCost;
 
     public float Interval;
     public float GeneratingAmount;
@@ -22,11 +26,13 @@ public struct GeneratorDetail
     public float Interval;
     public float GeneratingAmount;
     public float IdleCapacity;
+    public float UpgradeCost;
 
-    public GeneratorDetail(float interval, float generatingAmount, float idleCapacity)
+    public GeneratorDetail(float interval, float generatingAmount, float idleCapacity, float upgradeCost)
     {
         Interval = interval;
         GeneratingAmount = generatingAmount;
         IdleCapacity = idleCapacity;
+        UpgradeCost = upgradeCost;
     }
 }

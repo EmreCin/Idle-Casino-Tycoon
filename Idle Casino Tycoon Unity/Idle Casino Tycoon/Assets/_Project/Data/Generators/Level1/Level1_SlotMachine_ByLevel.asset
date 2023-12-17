@@ -16,24 +16,32 @@ MonoBehaviour:
   Name: Slot Machine
   MaxLevel: 20
   UnlockPrice: 0
+  IsUnlocked: 0
+  UpgradeCurrency: 0
+  GenerationCurrency: 0
   LevelDataList:
   - Level: 1
     IdleCapacity: 100
     Interval: 5
     GeneratingAmount: 10
+    UpgradeCost: 100
   - Level: 2
     IdleCapacity: 105
     Interval: 4.9
     GeneratingAmount: 11
+    UpgradeCost: 110
   - Level: 3
     IdleCapacity: 110
     Interval: 4.8
     GeneratingAmount: 12
+    UpgradeCost: 120
   - Level: 4
     IdleCapacity: 115
     Interval: 4.7
     GeneratingAmount: 13
+    UpgradeCost: 130
   - Level: 5
     IdleCapacity: 120
     Interval: 2
     GeneratingAmount: 20
+    UpgradeCost: 140

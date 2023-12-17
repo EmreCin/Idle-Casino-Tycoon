@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GeneratorController generatorController;
     [SerializeField] Transform generatorContainer;
 
+    GeneratorFactory factory;
+    Wallet wallet;
+
+
     float timer;
     bool isWorldActive;
 
@@ -19,10 +23,16 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        GeneratorFactory factory = new GeneratorFactory();
+        Currency test = new Currency(CurrencyType.Money, 100);
+        List<Currency> testList = new List<Currency>();
+        testList.Add(test);
+
+        wallet = new Wallet(testList);
+
+        factory = new GeneratorFactory();
         foreach (var generator in levelData.LevelGenerator.GeneratorList)
         {
-            factory.Create(1 ,generatorController, generator, generatorContainer);
+            factory.Create(1 ,generatorController, generator, wallet, generatorContainer);
         }
 
         isWorldActive = true;

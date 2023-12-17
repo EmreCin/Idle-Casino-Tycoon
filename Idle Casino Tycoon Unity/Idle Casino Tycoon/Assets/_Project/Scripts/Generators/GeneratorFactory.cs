@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseSO, GeneratorModel>
 {
-    public void Create(int level, GeneratorController controller, GeneratorDataBaseSO data, Transform parent)
+    public void Create(int level, GeneratorController controller, GeneratorDataBaseSO data, Wallet wallet,Transform parent)
     {
-        GeneratorModel newModel = GetData(level, data);
+        GeneratorModel newModel = GetData(level, data, wallet);
 
         var newController = GameObject.Instantiate<GeneratorController>(controller, parent);
 
@@ -15,7 +15,7 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
         newController.Init(newModel);
     }
 
-    public GeneratorModel GetData(int level, GeneratorDataBaseSO data)
+    public GeneratorModel GetData(int level, GeneratorDataBaseSO data, Wallet wallet)
     {
         GeneratorModel newModel = new GeneratorModel
         {
@@ -24,13 +24,16 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
             Level = level,
             MaxLevel = data.MaxLevel,
             IsUnlocked = data.IsUnlocked,
-            UnlockPrice = data.UnlockPrice
+            UnlockCost = data.UnlockPrice,
+            UpgradeCurrency = wallet.GetCurrnecyById(data.UpgradeCurrency),
+            GenerationCurrency = wallet.GetCurrnecyById(data.GenerationCurrency)
         };
         GeneratorDetail detail = data.GetDetail(1);
 
         newModel.Interval = detail.Interval;
         newModel.GeneratingAmount = detail.GeneratingAmount;
         newModel.IdleCapacity = detail.IdleCapacity;
+        newModel.UpgradeCost = detail.UpgradeCost;
 
         return newModel;
     }

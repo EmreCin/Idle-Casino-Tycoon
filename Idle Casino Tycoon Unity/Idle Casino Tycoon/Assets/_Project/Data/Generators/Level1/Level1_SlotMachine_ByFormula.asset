@@ -17,9 +17,13 @@ MonoBehaviour:
   MaxLevel: 50
   UnlockPrice: 0
   IsUnlocked: 1
+  UpgradeCurrency: 0
+  GenerationCurrency: 0
   IdleCapacity_Base: 100
   IdleCapacity_LevelMultiplier: 1.05
   Interval_Base: 5
   Interval_LevelMultiplier: 1.1
   GeneratingAmount_Base: 10
   GeneratingAmount_LevelMultiplier: 1.1
+  UpgradeCost_Base: 100
+  UpgradeCost_LevelMultiplier: 1.1

@@ -4,25 +4,31 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class GeneratorController : MonoBehaviour//, IGeneratorController
+public class GeneratorController : MonoBehaviour
 {
     GeneratorModel model;
     GeneratorBehavior behavior;
 
-    IDisposable timeListener;
+    //IDisposable timeListener;
+    //currency.ObserveEveryValueChanged(s=> s.Amount).Subscribe(x => { Test(x); }).AddTo(this); //.AddTo(disposables);
+    //if (timeListener != null) timeListener.Dispose();
+    private CompositeDisposable disposables = new CompositeDisposable();
     
 
     public void Init(GeneratorModel model)
     {
         this.model = model;
+
         behavior = new GeneratorBehavior(this.model);
 
-        timeListener = MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { Generate(x); })).AddTo(this);
+        this.model.UpgradeCurrency.ObserveEveryValueChanged(s => s.Amount).Subscribe(x => { CheckForUpgrade(); }).AddTo(disposables);
+        MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { Generate(x); })).AddTo(disposables);
     }
+   
 
     private void OnDisable()
     {
-        if (timeListener != null) timeListener.Dispose();
+        disposables.Clear();
     }
 
     void Generate(GameManager_TimeMessage message)
@@ -30,7 +36,15 @@ public class GeneratorController : MonoBehaviour//, IGeneratorController
         behavior.Generate(message.TimePassed);
     }
 
+    void CheckForUpgrade()
+    {
+        if (behavior.CheckForLevelUp())
+            Debug.LogError("*** Level Up Ready----------------->" + model.Id + " - " + model.Level);
+    }
+
     
+
+
 }
 
 

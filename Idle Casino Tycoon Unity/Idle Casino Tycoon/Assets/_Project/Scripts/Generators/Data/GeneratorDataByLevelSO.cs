@@ -12,7 +12,7 @@ public class GeneratorDataByLevelSO : GeneratorDataBaseSO
     {
         GeneratorLevelData data = LevelDataList.Where(s => s.Level == level).FirstOrDefault();
 
-        return new GeneratorDetail(data.Interval, data.GeneratingAmount, data.IdleCapacity);
+        return new GeneratorDetail(data.Interval, data.GeneratingAmount, data.IdleCapacity, data.UpgradeCost);
     }
 }
 
@@ -23,4 +23,5 @@ public class GeneratorLevelData
     public float IdleCapacity;
     public float Interval;
     public float GeneratingAmount;
+    public float UpgradeCost;
 }
