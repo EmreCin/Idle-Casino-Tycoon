@@ -15,6 +15,11 @@ public class GeneratorBehavior
         this.model = model;
     }
 
+    public void UpdateModel(GeneratorModel model)
+    {
+        this.model = model;
+    }
+
     public void Generate(float addedTime)
     {
         if (currentAmount == model.IdleCapacity) return;
@@ -31,12 +36,14 @@ public class GeneratorBehavior
 
         MessageBroker.Default.Publish(new Generator_GenerateMessage(model.Id, Time.deltaTime, currentTime / model.Interval, currentAmount, currentAmount/model.IdleCapacity));
 
-        Debug.LogError(model.Id + "- Generate --->" + currentAmount + " : " + currentTime);
+        //Debug.LogError(model.Id + "- Generate --->" + currentAmount + " : " + currentTime);
     }
 
     public float Collect()
     {
-        return 0;
+        var newAmount = currentAmount;
+        currentAmount = 0;
+        return newAmount;
     }
 
     public void LevelUp()
@@ -46,6 +53,8 @@ public class GeneratorBehavior
 
     public bool CheckForLevelUp()
     {
+        if (model.MaxLevel == model.Level) return false;
+
         return model.UpgradeCurrency.Amount >= model.UpgradeCost;
     }
 

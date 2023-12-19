@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -9,8 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GeneratorController generatorController;
     [SerializeField] Transform generatorContainer;
 
+    private CompositeDisposable disposables = new CompositeDisposable();
+
     GeneratorFactory factory;
     Wallet wallet;
+    List<GeneratorController> generatorList = new List<GeneratorController>();
 
 
     float timer;
@@ -19,6 +23,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Init();
+    }
+    private void OnDestroy()
+    {
+        disposables.Clear();
     }
 
     private void Init()
@@ -32,12 +40,33 @@ public class GameManager : MonoBehaviour
         factory = new GeneratorFactory();
         foreach (var generator in levelData.LevelGenerator.GeneratorList)
         {
-            factory.Create(1 ,generatorController, generator, wallet, generatorContainer);
+            var controller = factory.Create(1 ,generatorController, generator, wallet, generatorContainer);
+
+            generatorList.Add(controller);
+
+            controller.Collected.Subscribe(x => Collect(x)).AddTo(disposables);
+            controller.Leveluped.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
         }
 
         isWorldActive = true;
     }
 
+
+    void Collect(CurrencyMessage currencyMessage)
+    {
+        wallet.Gain(currencyMessage.CurrencyType, currencyMessage.Amount);
+    }
+    
+    void LevelUpGenerator(GeneratorModel model)
+    {
+        wallet.Spend(model.UpgradeCurrency.Id, model.UpgradeCost);
+        
+
+        var generatorData = levelData.LevelGenerator.GeneratorList.FirstOrDefault(s => s.Id == model.Id);
+        var upgradedModel = factory.GetData(model.Level + 1, generatorData, wallet);
+
+        generatorList.FirstOrDefault(s => s.Id == upgradedModel.Id)?.UpdateModel(upgradedModel);
+    }
 
     private void Update()
     {

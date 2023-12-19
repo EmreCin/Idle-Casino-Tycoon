@@ -6,12 +6,20 @@ using UnityEngine;
 
 public class GeneratorController : MonoBehaviour
 {
+    public string Id { get { return model.Id; } }
+
     GeneratorModel model;
     GeneratorBehavior behavior;
 
-    //IDisposable timeListener;
-    //currency.ObserveEveryValueChanged(s=> s.Amount).Subscribe(x => { Test(x); }).AddTo(this); //.AddTo(disposables);
-    //if (timeListener != null) timeListener.Dispose();
+    //Events
+    Subject<CurrencyMessage> collected = new Subject<CurrencyMessage>();
+    public IObservable<CurrencyMessage> Collected => collected;
+
+    //Events
+    Subject<GeneratorModel> leveluped = new Subject<GeneratorModel>();
+    public IObservable<GeneratorModel> Leveluped => leveluped;
+
+
     private CompositeDisposable disposables = new CompositeDisposable();
     
 
@@ -23,6 +31,12 @@ public class GeneratorController : MonoBehaviour
 
         this.model.UpgradeCurrency.ObserveEveryValueChanged(s => s.Amount).Subscribe(x => { CheckForUpgrade(); }).AddTo(disposables);
         MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { Generate(x); })).AddTo(disposables);
+    }
+
+    public void UpdateModel(GeneratorModel model)
+    {
+        this.model = model;
+        behavior.UpdateModel(this.model);
     }
    
 
@@ -43,9 +57,27 @@ public class GeneratorController : MonoBehaviour
     }
 
     
+    void Collect()
+    {
+        collected.OnNext(new CurrencyMessage(model.GenerationCurrency.Id, behavior.Collect()));
+    }
 
+    void LevelUp()
+    {
+        if (behavior.CheckForLevelUp())
+            leveluped.OnNext(model);
+    }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            Collect();
+        if (Input.GetKeyDown(KeyCode.L))
+            LevelUp();
+    }
 }
+
+
 
 
 

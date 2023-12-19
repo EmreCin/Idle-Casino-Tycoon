@@ -15,11 +15,15 @@ public class Wallet
     public void Spend(CurrencyType id, float amount)
     {
         currencyList.FirstOrDefault(s => s.Id == id).Amount -= amount;
+
+        Debug.LogError("WALLET - Spend:" + id + " - " + currencyList.FirstOrDefault(s => s.Id == id).Amount);
     }
 
     public void Gain(CurrencyType id, float amount)
     {
         currencyList.FirstOrDefault(s => s.Id == id).Amount += amount;
+
+        Debug.LogError("WALLET - Gain:" + id + " - " + currencyList.FirstOrDefault(s => s.Id == id).Amount);
     }
 
     public Currency GetCurrnecyById(CurrencyType id)

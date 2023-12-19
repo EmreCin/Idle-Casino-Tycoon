@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseSO, GeneratorModel>
 {
-    public void Create(int level, GeneratorController controller, GeneratorDataBaseSO data, Wallet wallet,Transform parent)
+    public GeneratorController Create(int level, GeneratorController controller, GeneratorDataBaseSO data, Wallet wallet,Transform parent)
     {
         GeneratorModel newModel = GetData(level, data, wallet);
 
@@ -16,7 +16,9 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
         GameObject.Instantiate(data.Visual, newController.transform);
 
         GeneratorView view = GameObject.Instantiate(data.View, newController.transform);
-        view.Init(newModel);
+        view.Init(newModel, newController);
+
+        return newController;
     }
 
     public GeneratorModel GetData(int level, GeneratorDataBaseSO data, Wallet wallet)
@@ -32,7 +34,7 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
             UpgradeCurrency = wallet.GetCurrnecyById(data.UpgradeCurrency),
             GenerationCurrency = wallet.GetCurrnecyById(data.GenerationCurrency)
         };
-        GeneratorDetail detail = data.GetDetail(1);
+        GeneratorDetail detail = data.GetDetail(level);
 
         newModel.Interval = detail.Interval;
         newModel.GeneratingAmount = detail.GeneratingAmount;
