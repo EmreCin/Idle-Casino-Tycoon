@@ -6,13 +6,25 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] SelectedGeneratorView selectedGenerator;
+    [SerializeField] Transform CurrenyContainer;
     // Start is called before the first frame update
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    void Start()
+
+    void Awake()
     {
+        MessageBroker.Default.Receive<Wallet_Message>().Subscribe(((x) => { InitCurrencies(x.Wallet); })).AddTo(disposables);
         MessageBroker.Default.Receive<GeneratorController_SelectedMessage>().Subscribe(((x) => { SelectGenerator(x.Model); })).AddTo(disposables);
     }
+
+    void InitCurrencies(Wallet wallet)
+    {
+        for (int i = 0; i < CurrenyContainer.childCount; i++)
+        {
+            CurrenyContainer.GetChild(i).GetComponent<CurrencyView>().Init(wallet);
+        }
+    }
+
 
     private void OnDestroy()
     {

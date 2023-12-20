@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     {
         Init();
     }
+    private void Start()
+    {
+        MessageBroker.Default.Publish(new Wallet_Message(wallet));
+    }
     private void OnDestroy()
     {
         disposables.Clear();
@@ -32,10 +36,15 @@ public class GameManager : MonoBehaviour
     private void Init()
     {
         Currency test = new Currency(CurrencyType.Money, 100);
+        Currency test2 = new Currency(CurrencyType.Chip, 20);
+        Currency test3 = new Currency(CurrencyType.Gem, 0);
         List<Currency> testList = new List<Currency>();
         testList.Add(test);
+        testList.Add(test2);
+        testList.Add(test3);
 
         wallet = new Wallet(testList);
+        
 
         factory = new GeneratorFactory();
         foreach (var generator in levelData.LevelGenerator.GeneratorList)
