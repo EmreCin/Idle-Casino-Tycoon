@@ -25,8 +25,8 @@ MonoBehaviour:
   LevelDataList:
   - Level: 1
     IdleCapacity: 100
-    Interval: 5
-    GeneratingAmount: 10
+    Interval: 2.5
+    GeneratingAmount: 25
     UpgradeCost: 100
   - Level: 2
     IdleCapacity: 105
