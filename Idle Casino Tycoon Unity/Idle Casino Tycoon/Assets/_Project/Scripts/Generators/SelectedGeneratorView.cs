@@ -29,7 +29,7 @@ public class SelectedGeneratorView : MonoBehaviour
         generatorLevel.text = "Level "+ model.Level.ToString()+" / "+ model.MaxLevel;
         levelFill.fillAmount = (float)model.Level / model.MaxLevel;
         upgradeCost.text = "$"+model.UpgradeCost.ToString();
-        generation.text = "$" + model.GeneratingAmount.ToString() + " / " + model.IdleCapacity.ToString() + " sec.";
+        generation.text = "$" + model.GeneratingAmount.ToString() + " / " + model.Interval.ToString() + " sec.";
 
         if (generatorModel.Id != currentId)
         {
@@ -58,7 +58,18 @@ public class SelectedGeneratorView : MonoBehaviour
         capacity.text = "$"+message.GeneratedAmount+" / $"+ model.IdleCapacity.ToString();
         capacityFill.fillAmount = message.GeneratedAmount / model.IdleCapacity;
 
-        
+        string amountMultiplierText = "";
+        if(message.AmountMultiplier != 1)
+        {
+            amountMultiplierText = "<color=green>" +" +"+ ((model.GeneratingAmount * message.AmountMultiplier) - model.GeneratingAmount).ToString() + "</color>";
+        }
+
+        string speedMultiplierText = "";
+        if (message.SpeedMultiplier != 1)
+        {
+            speedMultiplierText = "<color=green> " +((model.Interval * message.SpeedMultiplier) - model.Interval).ToString() + "</color>";
+        }
+        generation.text = "$" + model.GeneratingAmount.ToString() +amountMultiplierText+ " / " + model.Interval.ToString() + speedMultiplierText+ " sec.";
     }
 
 

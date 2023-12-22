@@ -7,3 +7,9 @@ public enum CurrencyType
     Chip,
     Gem
 }
+
+public enum MultiplierType
+{
+    Speed,
+    Amount
+}

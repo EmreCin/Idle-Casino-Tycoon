@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        Currency test = new Currency(CurrencyType.Money, 100);
-        Currency test2 = new Currency(CurrencyType.Chip, 20);
+        Currency test = new Currency(CurrencyType.Money, 0);
+        Currency test2 = new Currency(CurrencyType.Chip, 0);
         Currency test3 = new Currency(CurrencyType.Gem, 0);
         List<Currency> testList = new List<Currency>();
         testList.Add(test);
@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
 
             controller.Collected.Subscribe(x => Collect(x)).AddTo(disposables);
             controller.Leveluped.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
+            controller.Unlocked.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
         }
 
         isWorldActive = true;
@@ -75,6 +76,10 @@ public class GameManager : MonoBehaviour
         var upgradedModel = factory.GetData(model.Level + 1, generatorData, wallet);
 
         generatorList.FirstOrDefault(s => s.Id == upgradedModel.Id)?.UpdateModel(upgradedModel);
+    }
+    void UnlockGenerator(GeneratorModel model)
+    {
+        wallet.Spend(model.UpgradeCurrency.Id, model.UnlockCost);
     }
 
     private void Update()

@@ -11,9 +11,15 @@ public class GeneratorBehavior
     public float CurrentAmount => currentAmount;
     float currentTime;
 
+    float speedMultiplier=1;
+    float amountMultiplier=1;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+
     public GeneratorBehavior(GeneratorModel model)
     {
         this.model = model;
+        MessageBroker.Default.Receive<MultiplierMessage>().Subscribe(((x) => { CheckMultiplier(x); })).AddTo(disposables);
     }
 
     public void UpdateModel(GeneratorModel model)
@@ -27,19 +33,35 @@ public class GeneratorBehavior
         {
             currentTime += addedTime;
 
-            if (currentTime >= model.Interval)
+            if (currentTime >= (model.Interval * speedMultiplier))
             {
-                currentAmount = Mathf.Clamp(currentAmount + model.GeneratingAmount, 0, model.IdleCapacity);
+                currentAmount = Mathf.Clamp(currentAmount + (model.GeneratingAmount * amountMultiplier), 0, model.IdleCapacity);
 
-                if (currentAmount != model.IdleCapacity) currentTime -= model.Interval;
-                else currentTime = model.Interval;
+                if (currentAmount != model.IdleCapacity) currentTime -= (model.Interval * speedMultiplier);
+                else currentTime = (model.Interval * speedMultiplier);
             }
         }
         
 
-        MessageBroker.Default.Publish(new Generator_GenerateMessage(model.Id, Time.deltaTime, currentTime / model.Interval, currentAmount, currentAmount/model.IdleCapacity));
+        MessageBroker.Default.Publish(new Generator_GenerateMessage(model.Id, Time.deltaTime, currentTime / (model.Interval * speedMultiplier), currentAmount, currentAmount/model.IdleCapacity, amountMultiplier, speedMultiplier));
 
         //Debug.LogError(model.Id + "- Generate --->" + currentAmount + " : " + currentTime);
+    }
+
+    void CheckMultiplier(MultiplierMessage message)
+    {
+        var multipliers = message.MultiplierList;
+
+        amountMultiplier = 1;
+        speedMultiplier = 1;
+
+        foreach (var m in multipliers)
+        {
+            if (m.MultiplierType == MultiplierType.Amount)
+                amountMultiplier += m.Multiplier;
+            else if (m.MultiplierType == MultiplierType.Speed)
+                speedMultiplier -= m.Multiplier;
+        }
     }
 
     public float Collect()
@@ -49,20 +71,16 @@ public class GeneratorBehavior
         return newAmount;
     }
 
-    public void LevelUp()
-    {
-
-    }
-
     public bool CheckForLevelUp()
     {
         if (model.MaxLevel == model.Level) return false;
 
         return model.UpgradeCurrency.Amount >= model.UpgradeCost;
     }
-
     public bool CheckForUnlock()
     {
+        if (model.IsUnlocked) return false;
+
         return model.UpgradeCurrency.Amount >= model.UnlockCost;
     }
 }

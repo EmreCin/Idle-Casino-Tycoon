@@ -12,13 +12,16 @@ public class GeneratorController : MonoBehaviour
     GeneratorModel model;
     GeneratorBehavior behavior;
 
-   
+
 
     //Events
+    Subject<GeneratorModel> unlocked = new Subject<GeneratorModel>();
+    public IObservable<GeneratorModel> Unlocked => unlocked;
+
     Subject<CurrencyMessage> collected = new Subject<CurrencyMessage>();
     public IObservable<CurrencyMessage> Collected => collected;
 
-    //Events
+    
     Subject<GeneratorModel> leveluped = new Subject<GeneratorModel>();
     public IObservable<GeneratorModel> Leveluped => leveluped;
 
@@ -29,7 +32,10 @@ public class GeneratorController : MonoBehaviour
     public IObservable<bool> CollectReady => collectReady;
 
     private CompositeDisposable disposables = new CompositeDisposable();
-    
+
+    IDisposable unlockListener;
+
+
 
     public void Init(GeneratorModel model)
     {
@@ -37,12 +43,22 @@ public class GeneratorController : MonoBehaviour
 
         behavior = new GeneratorBehavior(this.model);
 
-        this.model.UpgradeCurrency.ObserveEveryValueChanged(s => s.Amount).Subscribe(x => { CheckForUpgrade(); }).AddTo(disposables);
-        MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { Generate(x); })).AddTo(disposables);
+        if(model.IsUnlocked)
+        {
+            MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { Generate(x); })).AddTo(disposables);
+            this.model.UpgradeCurrency.ObserveEveryValueChanged(s => s.Amount).Subscribe(x => { CheckForUpgrade(); }).AddTo(disposables);
+        }
+        else
+        {
+            unlockListener =this.model.UpgradeCurrency.ObserveEveryValueChanged(s => s.Amount).Subscribe(x => { CheckForUnlock(); }).AddTo(this);
+        }
     }
+           
+        
 
-    public void AddButtonEvents(Button collect, Button upgrade, Button select)
+    public void AddButtonEvents(Button collect, Button upgrade, Button select, Button unlock)
     {
+        unlock.onClick.AddListener(() => Unlock());
         collect.onClick.AddListener(() => Collect());
         upgrade.onClick.AddListener(() => LevelUp());
         select.onClick.AddListener(() => SelectGenerator());
@@ -69,6 +85,17 @@ public class GeneratorController : MonoBehaviour
         behavior.Generate(0);
     }
 
+    void Unlock()
+    {
+        if (!behavior.CheckForUnlock()) return;
+
+        MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { Generate(x); })).AddTo(disposables);
+        this.model.UpgradeCurrency.ObserveEveryValueChanged(s => s.Amount).Subscribe(x => { CheckForUpgrade(); }).AddTo(disposables);
+
+        model.IsUnlocked = true;
+        unlocked.OnNext(model);
+        unlockListener.Dispose();
+    }
 
     void Generate(GameManager_TimeMessage message)
     {
@@ -82,8 +109,13 @@ public class GeneratorController : MonoBehaviour
        levelReady.OnNext(behavior.CheckForLevelUp());
        //Debug.LogError("*** Level Up Ready----------------->" + model.Id + " - " + model.Level);
     }
+    void CheckForUnlock()
+    {
+        levelReady.OnNext(behavior.CheckForUnlock());
+        //Debug.LogError("*** Level Up Ready----------------->" + model.Id + " - " + model.Level);
+    }
 
-    
+
     void Collect()
     {
         collected.OnNext(new CurrencyMessage(model.GenerationCurrency.Id, behavior.Collect()));

@@ -18,7 +18,7 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
         GeneratorView view = GameObject.Instantiate(data.View, newController.transform);
         view.Init(newModel, newController);
 
-        newController.AddButtonEvents(view.CollectButton, view.LevelUpButton, view.SelectButton);
+        newController.AddButtonEvents(view.CollectButton, view.LevelUpButton, view.SelectButton, view.UnlockButton);
 
         return newController;
     }
