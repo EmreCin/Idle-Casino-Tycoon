@@ -91,6 +91,6 @@ public class GeneratorView : MonoBehaviour
         fillImageGenerating.DOFillAmount(message.FillAmount, message.TimePassed);
         fillImageCapacity.DOFillAmount(message.CapacityFillAmount, message.TimePassed);
 
-        generatedAmount.text = message.GeneratedAmount.ToString();
+        generatedAmount.text = CurrencyHelper.ToMoney(message.GeneratedAmount);
     }
 }

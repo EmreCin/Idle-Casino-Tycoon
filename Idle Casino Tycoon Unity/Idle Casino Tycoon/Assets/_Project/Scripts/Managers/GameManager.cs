@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
             controller.Collected.Subscribe(x => Collect(x)).AddTo(disposables);
             controller.Leveluped.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
-            controller.Unlocked.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
+            controller.Unlocked.Subscribe(x => UnlockGenerator(x)).AddTo(disposables);
         }
 
         isWorldActive = true;
