@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseSO, GeneratorModel>
+public class GeneratorFactory
 {
     public GeneratorController Create(int level, GeneratorController controller, GeneratorDataBaseSO data, Wallet wallet,Transform parent)
     {
@@ -32,7 +32,7 @@ public class GeneratorFactory : IFactory<GeneratorController, GeneratorDataBaseS
             Level = level,
             MaxLevel = data.MaxLevel,
             IsUnlocked = data.IsUnlocked,
-            UnlockCost = data.UnlockPrice,
+            UnlockCost = data.UnlockCost,
             UpgradeCurrency = wallet.GetCurrnecyById(data.UpgradeCurrency),
             GenerationCurrency = wallet.GetCurrnecyById(data.GenerationCurrency)
         };

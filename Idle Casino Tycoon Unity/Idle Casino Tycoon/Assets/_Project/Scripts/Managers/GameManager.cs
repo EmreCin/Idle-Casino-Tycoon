@@ -8,11 +8,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] LevelDataSO levelData;
     [SerializeField] GeneratorController generatorController;
+    [SerializeField] DecorativeViewController decorativeController;
     [SerializeField] Transform generatorContainer;
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    GeneratorFactory factory;
+    GeneratorFactory generatorFactory;
     Wallet wallet;
     List<GeneratorController> generatorList = new List<GeneratorController>();
 
@@ -44,12 +45,20 @@ public class GameManager : MonoBehaviour
         testList.Add(test3);
 
         wallet = new Wallet(testList);
-        
 
-        factory = new GeneratorFactory();
+
+        InitGenerator();
+        decorativeController.Init(levelData.LevelDecorative);
+
+        isWorldActive = true;
+    }
+
+    void InitGenerator()
+    {
+        generatorFactory = new GeneratorFactory();
         foreach (var generator in levelData.LevelGenerator.GeneratorList)
         {
-            var controller = factory.Create(1 ,generatorController, generator, wallet, generatorContainer);
+            var controller = generatorFactory.Create(1, generatorController, generator, wallet, generatorContainer);
 
             generatorList.Add(controller);
 
@@ -57,10 +66,8 @@ public class GameManager : MonoBehaviour
             controller.Leveluped.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
             controller.Unlocked.Subscribe(x => UnlockGenerator(x)).AddTo(disposables);
         }
-
-        isWorldActive = true;
     }
-
+  
 
     void Collect(CurrencyMessage currencyMessage)
     {
@@ -73,7 +80,7 @@ public class GameManager : MonoBehaviour
         
 
         var generatorData = levelData.LevelGenerator.GeneratorList.FirstOrDefault(s => s.Id == model.Id);
-        var upgradedModel = factory.GetData(model.Level + 1, generatorData, wallet);
+        var upgradedModel = generatorFactory.GetData(model.Level + 1, generatorData, wallet);
 
         generatorList.FirstOrDefault(s => s.Id == upgradedModel.Id)?.UpdateModel(upgradedModel);
     }

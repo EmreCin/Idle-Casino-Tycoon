@@ -34,7 +34,10 @@ public class CurrencyView : MonoBehaviour
 
     void UpdateAmount()
     {
-        amountText.text = currency.Amount.ToString();
+        if(currency.Id == CurrencyType.Money)
+            amountText.text = CurrencyHelper.ToMoney(currency.Amount,false);
+        else
+            amountText.text = currency.Amount.ToString();
     }
 
     

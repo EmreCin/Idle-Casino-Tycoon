@@ -6,4 +6,5 @@ using UnityEngine;
 public class LevelDataSO : ScriptableObject
 {
     public GeneratorDataContainerSO LevelGenerator;
+    public DecorativeDataContainerSO LevelDecorative;
 }

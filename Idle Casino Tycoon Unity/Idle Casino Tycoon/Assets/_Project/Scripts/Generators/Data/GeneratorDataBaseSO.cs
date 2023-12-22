@@ -13,7 +13,7 @@ public abstract class GeneratorDataBaseSO : ScriptableObject
     public GeneratorView View;
     [Header("Details")]
     public int MaxLevel;
-    public int UnlockPrice;
+    public int UnlockCost;
     public bool IsUnlocked;
     public CurrencyType UpgradeCurrency;
     public CurrencyType GenerationCurrency;

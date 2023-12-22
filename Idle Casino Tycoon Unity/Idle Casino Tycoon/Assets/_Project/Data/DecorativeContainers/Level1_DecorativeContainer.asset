@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52fb40084828d7c48ae461f6e1ee2d9b, type: 3}
-  m_Name: Level1_Data
+  m_Script: {fileID: 11500000, guid: 8969fc701d66f354aab6e8c5404e7583, type: 3}
+  m_Name: Level1_DecorativeContainer
   m_EditorClassIdentifier: 
-  LevelGenerator: {fileID: 11400000, guid: 87562d6e88696234dbd79d88ac867ab8, type: 2}
-  LevelDecorative: {fileID: 11400000, guid: d1e0ed4a28b82d041802542148cd31fa, type: 2}
+  DecorativeList:
+  - {fileID: 11400000, guid: 1ff9b436d7b2a4f48b988cc08739684c, type: 2}
+  - {fileID: 11400000, guid: 94c1b9e68758a5a469b1ef3bb9f6eb52, type: 2}

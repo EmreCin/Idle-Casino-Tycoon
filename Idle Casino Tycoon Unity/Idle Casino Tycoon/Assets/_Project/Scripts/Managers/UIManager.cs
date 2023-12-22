@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] SelectedGeneratorView selectedGenerator;
     [SerializeField] Transform CurrenyContainer;
+    [SerializeField] Button decorativeButton;
+    [SerializeField] DecorativeViewController decorativeController;
     // Start is called before the first frame update
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -15,6 +18,8 @@ public class UIManager : MonoBehaviour
     {
         MessageBroker.Default.Receive<Wallet_Message>().Subscribe(((x) => { InitCurrencies(x.Wallet); })).AddTo(disposables);
         MessageBroker.Default.Receive<GeneratorController_SelectedMessage>().Subscribe(((x) => { SelectGenerator(x.Model); })).AddTo(disposables);
+
+        decorativeButton.onClick.AddListener(() => OnOffDecorative());
     }
 
     void InitCurrencies(Wallet wallet)
@@ -33,8 +38,14 @@ public class UIManager : MonoBehaviour
 
     void SelectGenerator(GeneratorModel model)
     {
-        //selectedGenerator.gameObject.SetActive(true);
+        decorativeController.OnOff(false);
         selectedGenerator.Init(model);
+    }
+
+    void OnOffDecorative()
+    {
+        decorativeController.OnOff(!decorativeController.gameObject.activeSelf);
+        selectedGenerator.Close();
     }
     
 }
