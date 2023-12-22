@@ -18,10 +18,10 @@ public class MultiplierManager : MonoBehaviour
     private void Start()
     {
         MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { GetTime(x); })).AddTo(disposables);
-
+        MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { BuyedDecorative(x.Model.MultiplierInstanceList); })).AddTo(disposables);
         //TEST ****************************
-        MultiplierInstance test1 = new MultiplierInstance("L1_SlotMachine_Level", MultiplierType.Amount, 4, 3);
-        MultiplierInstance test2 = new MultiplierInstance("L1_SlotMachine_Formula", MultiplierType.Speed, 0.5f, 3);
+        MultiplierInstance test1 = new MultiplierInstance("L1_SlotMachine_Level", MultiplierType.Amount, 2, 3);
+        MultiplierInstance test2 = new MultiplierInstance("L1_SlotMachine_Formula", MultiplierType.Speed, 0.1f, 3);
 
        
         AddToList(test1);
@@ -44,26 +44,38 @@ public class MultiplierManager : MonoBehaviour
         multiplierList.Add(multiplier);
         MessageBroker.Default.Publish(new MultiplierMessage(multiplierList));
 
-        //TODO: Remove listeners----------------------------------------
-        this.UpdateAsObservable()
-            .Where(_ => multiplier.Duration.Value > 0f) 
-            .Subscribe(_ =>
-            {
-                multiplier.Duration.Value -= timeProgress;
-                timeProgress = 0;
-            });
-
-        multiplier.Duration.Subscribe(value =>
+        
+        if(multiplier.Duration.Value > 0)
         {
-            if (value <= 0f)
+            this.UpdateAsObservable()
+           .Where(_ => multiplier.Duration.Value > 0f)
+           .Subscribe(_ =>
+           {
+               multiplier.Duration.Value -= timeProgress;
+               timeProgress = 0;
+           });
+
+            multiplier.Duration.Subscribe(value =>
             {
-                if (multiplierList.Contains(multiplier))
+                if (value <= 0f)
                 {
-                    multiplierList.Remove(multiplier);
-                    MessageBroker.Default.Publish(new MultiplierMessage(multiplierList));
+                    if (multiplierList.Contains(multiplier))
+                    {
+                        multiplierList.Remove(multiplier);
+                        MessageBroker.Default.Publish(new MultiplierMessage(multiplierList));
+                    }
                 }
-            }
-        });
+            });
+        }
+       
+    }
+
+    private void BuyedDecorative(List<MultiplierInstance> multiplierList)
+    {
+        foreach (var item in multiplierList)
+        {
+            AddToList(item);
+        }
     }
 
 }

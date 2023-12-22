@@ -3892,6 +3892,7 @@ MonoBehaviour:
   - {fileID: 386527040}
   - {fileID: 1615704738}
   panel: {fileID: 1893675454}
+  buyButton: {fileID: 1337812701}
 --- !u!1 &1208628438
 GameObject:
   m_ObjectHideFlags: 0

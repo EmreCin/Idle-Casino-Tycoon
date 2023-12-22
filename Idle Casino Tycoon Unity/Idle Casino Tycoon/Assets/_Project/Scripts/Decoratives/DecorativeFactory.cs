@@ -25,7 +25,9 @@ public class DecorativeFactory : MonoBehaviour
             IsUnlocked = data.IsUnlocked,
             UnlockCurrency = data.UnlockCurrency,
             MultiplierInstanceList = new List<MultiplierInstance>(),
-            SpriteList = data.VisualOptions
+            SpriteList = data.VisualOptions,
+            VisualPrefab = data.Visual,
+            VisualPosition = data.DecorativePosition
         };
 
         foreach (var effect in data.MultiplierEffectList)

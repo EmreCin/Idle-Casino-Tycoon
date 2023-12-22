@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         MessageBroker.Default.Publish(new Wallet_Message(wallet));
+        MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { BuyedDecorative(x.Model); })).AddTo(disposables);
     }
     private void OnDestroy()
     {
@@ -87,6 +88,11 @@ public class GameManager : MonoBehaviour
     void UnlockGenerator(GeneratorModel model)
     {
         wallet.Spend(model.UpgradeCurrency.Id, model.UnlockCost);
+    }
+
+    void BuyedDecorative(DecorativeModel model)
+    {
+        wallet.Spend(model.UnlockCurrency, model.UnlockCost);
     }
 
     private void Update()

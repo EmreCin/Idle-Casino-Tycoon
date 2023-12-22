@@ -1,6 +1,8 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UniRx;
 using UnityEngine;
 
 public class DecorativeViewController : MonoBehaviour
@@ -8,7 +10,14 @@ public class DecorativeViewController : MonoBehaviour
     [SerializeField] Transform container;
     [SerializeField] DecorativeItemView decorativeItemPrefab;
 
-    
+    private CompositeDisposable disposables = new CompositeDisposable();
+
+    List<DecorativeItemView> decorativeItemList = new List<DecorativeItemView>();
+
+    private void Awake()
+    {
+        MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { Buyed(x.Model); })).AddTo(disposables);
+    }
 
     public void Init(DecorativeDataContainerSO dataContainer)
     {
@@ -17,12 +26,19 @@ public class DecorativeViewController : MonoBehaviour
         foreach (var decorative in dataContainer.DecorativeList)
         {
             var itemView = decorativeFactory.Create(decorative, decorativeItemPrefab, container);
-           
 
-            //controller.Collected.Subscribe(x => Collect(x)).AddTo(disposables);
-            //controller.Leveluped.Subscribe(x => LevelUpGenerator(x)).AddTo(disposables);
-            //controller.Unlocked.Subscribe(x => UnlockGenerator(x)).AddTo(disposables);
+
+            decorativeItemList.Add(itemView);
         }
+    }
+
+    void Buyed(DecorativeModel model)
+    {
+        var buyed = decorativeItemList.FirstOrDefault(s => s.Id == model.Id);
+        if (buyed != null) buyed.SetUnlocked();
+
+       var visual = Instantiate(model.VisualPrefab, model.VisualPosition, Quaternion.identity);
+        visual.GetComponent<SpriteRenderer>().sprite = model.SpriteList[model.SelectedVisual];
     }
 
     public void OnOff(bool isOn)

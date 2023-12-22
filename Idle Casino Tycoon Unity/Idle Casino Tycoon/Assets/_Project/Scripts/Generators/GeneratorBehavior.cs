@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -50,7 +51,7 @@ public class GeneratorBehavior
 
     void CheckMultiplier(MultiplierMessage message)
     {
-        var multipliers = message.MultiplierList;
+        var multipliers = message.MultiplierList.Where(s=> s.Id == model.Id).ToList();
 
         amountMultiplier = 1;
         speedMultiplier = 1;

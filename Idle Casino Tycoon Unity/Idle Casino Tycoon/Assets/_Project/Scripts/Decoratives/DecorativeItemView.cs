@@ -9,7 +9,10 @@ public class DecorativeItemView : MonoBehaviour
     [SerializeField] TMPro.TMP_Text nameText;
     [SerializeField] TMPro.TMP_Text unlockedCostText;
     [SerializeField] Button unlockButton;
+    
     DecorativeModel model;
+
+    public string Id { get { return model.Id; } }
 
 
     public void Init(DecorativeModel model)
@@ -17,13 +20,34 @@ public class DecorativeItemView : MonoBehaviour
         this.model = model;
 
         nameText.text = model.Name;
-        unlockedCostText.text = CurrencyHelper.ToMoney(model.UnlockCost);
 
-        unlockButton.onClick.AddListener(() => SelectToUnlock());
+        CheckUnlock();
+        
     }
 
     void SelectToUnlock()
     {
         MessageBroker.Default.Publish(new Decorative_SelectMessage(model));
+    }
+
+    public void SetUnlocked()
+    {
+        model.IsUnlocked = true;
+        CheckUnlock();
+    }
+
+    void CheckUnlock()
+    {
+        if (model.IsUnlocked)
+        {
+            unlockButton.onClick.RemoveAllListeners();
+            unlockedCostText.text = "";
+        }
+        else
+        {
+            unlockButton.onClick.AddListener(() => SelectToUnlock());
+            unlockedCostText.text = CurrencyHelper.ToMoney(model.UnlockCost);
+        }
+            
     }
 }

@@ -11,4 +11,8 @@ public class DecorativeModel
     public CurrencyType UnlockCurrency;
     public List<MultiplierInstance> MultiplierInstanceList;
     public List<Sprite> SpriteList;
+    public Transform VisualPrefab;
+    public Vector3 VisualPosition;
+
+    public int SelectedVisual = -1;
 }

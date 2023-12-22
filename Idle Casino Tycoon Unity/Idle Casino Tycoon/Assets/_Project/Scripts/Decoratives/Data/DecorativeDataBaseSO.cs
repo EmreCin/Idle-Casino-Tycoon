@@ -10,8 +10,7 @@ public class DecorativeDataBaseSO : ScriptableObject
     public string Name;
     [Header("Other Components")]
     public Vector3 DecorativePosition;
-    //public Transform Visual;
-    //public DecorativeView View;
+    public Transform Visual;
     [Header("Details")]
     public int UnlockCost;
     public bool IsUnlocked;

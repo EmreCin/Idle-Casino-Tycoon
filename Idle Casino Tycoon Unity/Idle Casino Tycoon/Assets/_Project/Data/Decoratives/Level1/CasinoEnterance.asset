@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: CasinoEnterance
   Name: Casino Enterance
-  DecorativePosition: {x: 0, y: 0, z: 0}
+  DecorativePosition: {x: -1, y: 2, z: 0}
+  Visual: {fileID: 3585068481228091425, guid: dbcf81e33e234f44b8e85ed751514c73, type: 3}
   UnlockCost: 50
-  IsUnlocked: 1
+  IsUnlocked: 0
   UnlockCurrency: 0
   MultiplierEffectList:
   - MultiplierType: 1

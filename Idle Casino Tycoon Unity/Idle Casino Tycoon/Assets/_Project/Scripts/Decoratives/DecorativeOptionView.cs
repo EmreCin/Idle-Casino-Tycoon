@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DecorativeOptionView : MonoBehaviour
 {
     [SerializeField] List<DecorativeOptionItemView> optionItemList;
     [SerializeField] Transform panel;
+    [SerializeField] Button buyButton;
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    int currentIndex;
+    DecorativeModel model;
+    Wallet wallet;
+
     private void Awake()
     {
-        MessageBroker.Default.Receive<Decorative_SelectMessage>().Subscribe(((x) => { FillOptionIcons(x.Model.SpriteList); })).AddTo(disposables);
+        buyButton.onClick.AddListener(() => Buy());
+        MessageBroker.Default.Receive<Wallet_Message>().Subscribe(((x) => { GetWallet(x.Wallet); })).AddTo(disposables);
+        MessageBroker.Default.Receive<Decorative_SelectMessage>().Subscribe(((x) => { FillOptionIcons(x.Model); })).AddTo(disposables);
     }
 
     private void OnDisable()
@@ -20,16 +29,19 @@ public class DecorativeOptionView : MonoBehaviour
         disposables.Clear();
     }
 
-    public void FillOptionIcons(List<Sprite> spriteList)
+    public void FillOptionIcons(DecorativeModel model)
     {
+        currentIndex = 1;
+        this.model = model;
+        CheckIsUnlockable();
         ResetOptions();
 
         for (int i = 0; i < optionItemList.Count; i++)
         {
-            if(i < spriteList.Count)
+            if(i < model.SpriteList.Count)
             {
                 optionItemList[i].gameObject.SetActive(true);
-                optionItemList[i].InitOption(spriteList[i], SelectOption, i);
+                optionItemList[i].InitOption(model.SpriteList[i], SelectOption, i);
                 if (i == 0) optionItemList[i].OptionSelected(true);
             }
         }
@@ -38,6 +50,8 @@ public class DecorativeOptionView : MonoBehaviour
 
     void SelectOption(int index)
     {
+        currentIndex = index;
+
         for (int i = 0; i < optionItemList.Count; i++)
         {
             optionItemList[i].OptionSelected(i == index);
@@ -53,5 +67,27 @@ public class DecorativeOptionView : MonoBehaviour
         }
     }
 
-  
+    private void Buy()
+    {
+        model.SelectedVisual = currentIndex;
+
+        MessageBroker.Default.Publish<Decorative_BuyMessage>(new Decorative_BuyMessage(model));
+        panel.gameObject.SetActive(false);
+    }
+    private void GetWallet(Wallet wallet)
+    {
+        this.wallet = wallet;
+    }
+
+    void CheckIsUnlockable()
+    {
+        var currency = wallet.GetCurrnecyById(model.UnlockCurrency);
+
+        if (model.UnlockCost > currency.Amount)
+            buyButton.interactable = false;
+        else
+            buyButton.interactable = true;
+
+
+    }
 }

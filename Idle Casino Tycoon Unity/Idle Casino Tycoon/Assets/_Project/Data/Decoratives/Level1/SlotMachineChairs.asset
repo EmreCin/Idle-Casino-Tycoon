@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: SlotMachineChairs
   Name: Slot Machine Chairs
-  DecorativePosition: {x: 0, y: 0, z: 0}
+  DecorativePosition: {x: 1, y: 2, z: 0}
+  Visual: {fileID: 7561974841604411825, guid: b866adbd5cd7b9547ba07f68b6e394c7, type: 3}
   UnlockCost: 100
-  IsUnlocked: 1
+  IsUnlocked: 0
   UnlockCurrency: 0
   MultiplierEffectList:
   - MultiplierType: 0
-    Multiplier: 1.1
+    Multiplier: 0.25
   EffectedGeneratorList:
   - L1_SlotMachine_Formula
   - L1_SlotMachine_Level
