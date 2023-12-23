@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     void Collect(CurrencyMessage currencyMessage)
     {
+        MessageBroker.Default.Publish(new CurrencyMessage(currencyMessage.CurrencyType, currencyMessage.Amount));
+        
         wallet.Gain(currencyMessage.CurrencyType, currencyMessage.Amount);
     }
     
@@ -97,14 +99,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //    timer += Time.deltaTime;
-
-        //if(isWorldActive && timer >= 1)
-        //{
-        //    MessageBroker.Default.Publish(new GameManager_TimeMessage(timer));
-        //    timer = 0;
-        //}
-        MessageBroker.Default.Publish(new GameManager_TimeMessage(Time.deltaTime));
+        if (isWorldActive)
+            MessageBroker.Default.Publish(new GameManager_TimeMessage(Time.deltaTime));
     }
 
 }

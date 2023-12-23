@@ -22,7 +22,7 @@ MonoBehaviour:
   UnlockCurrency: 0
   MultiplierEffectList:
   - MultiplierType: 0
-    Multiplier: 0.25
+    Multiplier: 0.1
   EffectedGeneratorList:
   - L1_SlotMachine_Formula
   - L1_SlotMachine_Level
