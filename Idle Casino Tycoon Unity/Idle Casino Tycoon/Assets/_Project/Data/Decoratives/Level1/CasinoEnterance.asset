@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: CasinoEnterance
   Name: Casino Enterance
+  Desc: Increase generation amount for all the generators.
   DecorativePosition: {x: -1, y: 2, z: 0}
   Visual: {fileID: 3585068481228091425, guid: dbcf81e33e234f44b8e85ed751514c73, type: 3}
   UnlockCost: 50
@@ -21,7 +22,7 @@ MonoBehaviour:
   UnlockCurrency: 0
   MultiplierEffectList:
   - MultiplierType: 1
-    Multiplier: 1.1
+    Multiplier: 0.25
   EffectedGeneratorList: []
   VisualOptions:
   - {fileID: 21300000, guid: ce724b6e2e8e1b849972139a8e8bde46, type: 3}

@@ -6,6 +6,7 @@ public class DecorativeModel
 {
     public string Id;
     public string Name;
+    public string Desc;
     public int UnlockCost;
     public bool IsUnlocked;
     public CurrencyType UnlockCurrency;

@@ -8,6 +8,7 @@ public class DecorativeDataBaseSO : ScriptableObject
     [Header("Decorative")]
     public string Id;
     public string Name;
+    public string Desc;
     [Header("Other Components")]
     public Vector3 DecorativePosition;
     public Transform Visual;

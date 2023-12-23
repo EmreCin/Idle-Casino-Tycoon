@@ -61,13 +61,13 @@ public class SelectedGeneratorView : MonoBehaviour
         string amountMultiplierText = "";
         if(message.AmountMultiplier != 1)
         {
-            amountMultiplierText = "<color=green>" +" +"+ ((model.GeneratingAmount * message.AmountMultiplier) - model.GeneratingAmount).ToString() + "</color>";
+            amountMultiplierText = "<color=green>" +" +"+ ((model.GeneratingAmount * message.AmountMultiplier) - model.GeneratingAmount).ToString("0.0") + "</color>";
         }
 
         string speedMultiplierText = "";
         if (message.SpeedMultiplier != 1)
         {
-            speedMultiplierText = "<color=green> " +((model.Interval * message.SpeedMultiplier) - model.Interval).ToString() + "</color>";
+            speedMultiplierText = "<color=green> " +((model.Interval * message.SpeedMultiplier) - model.Interval).ToString("0.0") + "</color>";
         }
         generation.text = CurrencyHelper.ToMoney(model.GeneratingAmount) +amountMultiplierText+ " / " + model.Interval.ToString() + speedMultiplierText+ " sec.";
     }

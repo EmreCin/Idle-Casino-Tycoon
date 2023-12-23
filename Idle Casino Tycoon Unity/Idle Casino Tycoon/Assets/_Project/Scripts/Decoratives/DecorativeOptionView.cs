@@ -10,6 +10,8 @@ public class DecorativeOptionView : MonoBehaviour
     [SerializeField] List<DecorativeOptionItemView> optionItemList;
     [SerializeField] Transform panel;
     [SerializeField] Button buyButton;
+    [SerializeField] TMPro.TMP_Text nameText;
+    [SerializeField] TMPro.TMP_Text descText;
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -31,7 +33,10 @@ public class DecorativeOptionView : MonoBehaviour
 
     public void FillOptionIcons(DecorativeModel model)
     {
-        currentIndex = 1;
+        nameText.text = model.Name;
+        descText.text = model.Desc;
+
+        currentIndex = 0;
         this.model = model;
         CheckIsUnlockable();
         ResetOptions();

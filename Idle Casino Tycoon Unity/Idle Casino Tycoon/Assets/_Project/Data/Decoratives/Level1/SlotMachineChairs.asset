@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: SlotMachineChairs
   Name: Slot Machine Chairs
+  Desc: Increase generating speed of the slot machines.
   DecorativePosition: {x: 1, y: 2, z: 0}
   Visual: {fileID: 7561974841604411825, guid: b866adbd5cd7b9547ba07f68b6e394c7, type: 3}
   UnlockCost: 100

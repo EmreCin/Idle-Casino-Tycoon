@@ -21,6 +21,7 @@ public class DecorativeFactory : MonoBehaviour
         {
             Id = data.Id,
             Name = data.Name,
+            Desc = data.Desc,
             UnlockCost = data.UnlockCost,
             IsUnlocked = data.IsUnlocked,
             UnlockCurrency = data.UnlockCurrency,

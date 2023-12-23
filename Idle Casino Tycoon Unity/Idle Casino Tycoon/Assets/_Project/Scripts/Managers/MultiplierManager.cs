@@ -20,12 +20,12 @@ public class MultiplierManager : MonoBehaviour
         MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { GetTime(x); })).AddTo(disposables);
         MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { BuyedDecorative(x.Model.MultiplierInstanceList); })).AddTo(disposables);
         //TEST ****************************
-        MultiplierInstance test1 = new MultiplierInstance("L1_SlotMachine_Level", MultiplierType.Amount, 2, 3);
+        MultiplierInstance test1 = new MultiplierInstance("L1_SlotMachine_Level", MultiplierType.Amount, 0.25f, 30);
         MultiplierInstance test2 = new MultiplierInstance("L1_SlotMachine_Formula", MultiplierType.Speed, 0.1f, 3);
 
        
         AddToList(test1);
-        AddToList(test2);
+       // AddToList(test2);
         //TEST
     }
 

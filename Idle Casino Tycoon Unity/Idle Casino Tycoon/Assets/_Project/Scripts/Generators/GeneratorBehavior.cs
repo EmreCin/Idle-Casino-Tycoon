@@ -14,6 +14,7 @@ public class GeneratorBehavior
 
     float speedMultiplier=1;
     float amountMultiplier=1;
+    
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -51,12 +52,13 @@ public class GeneratorBehavior
 
     void CheckMultiplier(MultiplierMessage message)
     {
-        var multipliers = message.MultiplierList.Where(s=> s.Id == model.Id).ToList();
+       var multiplierList = message.MultiplierList.Where(s => s.Id == model.Id || s.Id == "").ToList();
+       
 
         amountMultiplier = 1;
         speedMultiplier = 1;
 
-        foreach (var m in multipliers)
+        foreach (var m in multiplierList)
         {
             if (m.MultiplierType == MultiplierType.Amount)
                 amountMultiplier += m.Multiplier;
