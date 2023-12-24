@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         var upgradedModel = generatorFactory.GetData(model.Level + 1, generatorData, wallet);
 
         generatorList.FirstOrDefault(s => s.Id == upgradedModel.Id)?.UpdateModel(upgradedModel);
+
+        MessageBroker.Default.Publish(new Mission_SpendableUpdateMessage(model.Id, model.IsUnlocked, 1));
     }
     void UnlockGenerator(GeneratorModel model)
     {
