@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34303db1f0fe7e43819b4ee1b415101, type: 3}
   m_Name: MissionUnlockGenerator_SlotMachine_Level3
   m_EditorClassIdentifier: 
-  Id: 4
+  Id: 3
   Name: Unlock  Slot Machine Level
   Desc: Unlock  Slot Machine Level
   RewardCurrencyType: 1
