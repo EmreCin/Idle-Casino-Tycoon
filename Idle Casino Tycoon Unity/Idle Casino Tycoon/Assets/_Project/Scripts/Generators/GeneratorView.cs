@@ -38,7 +38,7 @@ public class GeneratorView : MonoBehaviour
 
         if(!model.IsUnlocked)
         {
-            unlcokButtonText.text = "UNLOCK (" + CurrencyHelper.ToMoney(model.UnlockCost) + ")";
+            unlcokButtonText.text = "UNLOCK (" + CurrencyHelper.ToCurrency(model.UnlockCost, model.UpgradeCurrency.Id) + ")";
             unlockButton.gameObject.SetActive(true);
         }
 
@@ -91,6 +91,6 @@ public class GeneratorView : MonoBehaviour
         fillImageGenerating.DOFillAmount(message.FillAmount, message.TimePassed);
         fillImageCapacity.DOFillAmount(message.CapacityFillAmount, message.TimePassed);
 
-        generatedAmount.text = CurrencyHelper.ToMoney(message.GeneratedAmount);
+        generatedAmount.text = CurrencyHelper.ToCurrency(message.GeneratedAmount, message.CurrencyType);
     }
 }

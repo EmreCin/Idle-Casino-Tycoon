@@ -45,7 +45,7 @@ public class GeneratorBehavior
         }
         
 
-        MessageBroker.Default.Publish(new Generator_GenerateMessage(model.Id, Time.deltaTime, currentTime / (model.Interval * speedMultiplier), currentAmount, currentAmount/model.IdleCapacity, amountMultiplier, speedMultiplier));
+        MessageBroker.Default.Publish(new Generator_GenerateMessage(model.Id, Time.deltaTime, currentTime / (model.Interval * speedMultiplier), currentAmount, currentAmount/model.IdleCapacity, amountMultiplier, speedMultiplier, model.GenerationCurrency.Id));
 
         //Debug.LogError(model.Id + "- Generate --->" + currentAmount + " : " + currentTime);
     }

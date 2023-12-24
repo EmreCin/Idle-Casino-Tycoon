@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -7,7 +8,9 @@ public class MissionMoneyCollectBehavior : IMissionBehavior
 {
     private float amountTarget;
     private int id;
-    private Currency reward;
+    private float reward;
+    private CurrencyType rewardCurrencyType;
+
     private CurrencyType currencyType;
 
     private CompositeDisposable disposables = new CompositeDisposable();
@@ -16,10 +19,12 @@ public class MissionMoneyCollectBehavior : IMissionBehavior
     bool isStarted;
     bool isReadyToComplete;
 
-    public MissionMoneyCollectBehavior(int id, Currency reward, CurrencyType currency)
+
+    public MissionMoneyCollectBehavior(int id, float reward,CurrencyType rewardCurrencyType, CurrencyType currency)
     {
         this.id = id;
         this.reward = reward;
+        this.rewardCurrencyType = rewardCurrencyType;
         currencyType = currency;
     }
 
@@ -49,12 +54,16 @@ public class MissionMoneyCollectBehavior : IMissionBehavior
     {
         if (isReadyToComplete) return;
         isReadyToComplete = true;
-        
+        Debug.LogError("ChangeState " + id.ToString());
+        MessageBroker.Default.Publish(new Mission_CompleteMessage(id, false));
     }
 
     public void CompleteMission()
     {
         if (!isReadyToComplete) return;
+
+        Debug.LogError("BEH CompleteMission " + id.ToString());
+        MessageBroker.Default.Publish(new Mission_CompleteMessage(id,true));
 
         disposables.Clear();
     }

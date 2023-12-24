@@ -46,7 +46,7 @@ public class DecorativeItemView : MonoBehaviour
         else
         {
             unlockButton.onClick.AddListener(() => SelectToUnlock());
-            unlockedCostText.text = CurrencyHelper.ToMoney(model.UnlockCost);
+            unlockedCostText.text = CurrencyHelper.ToCurrency(model.UnlockCost, model.UnlockCurrency);
         }
             
     }

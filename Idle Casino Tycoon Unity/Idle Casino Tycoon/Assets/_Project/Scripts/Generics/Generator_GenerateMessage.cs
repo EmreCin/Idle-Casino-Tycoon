@@ -11,8 +11,9 @@ public struct Generator_GenerateMessage
     public float CapacityFillAmount;
     public float AmountMultiplier;
     public float SpeedMultiplier;
+    public CurrencyType CurrencyType;
 
-    public Generator_GenerateMessage(string id, float timePassed, float fillAmount, float generatedAmount, float capacityFillAmount, float amountMultiplier, float speedMultiplier)
+    public Generator_GenerateMessage(string id, float timePassed, float fillAmount, float generatedAmount, float capacityFillAmount, float amountMultiplier, float speedMultiplier, CurrencyType currencyType)
     {
         Id = id;
         TimePassed = timePassed;
@@ -21,5 +22,6 @@ public struct Generator_GenerateMessage
         CapacityFillAmount = capacityFillAmount;
         AmountMultiplier = amountMultiplier;
         SpeedMultiplier = speedMultiplier;
+        CurrencyType = currencyType;
     }
 }

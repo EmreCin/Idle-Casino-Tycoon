@@ -28,8 +28,8 @@ public class SelectedGeneratorView : MonoBehaviour
         generatorName.text = model.Name;
         generatorLevel.text = "Level "+ model.Level.ToString()+" / "+ model.MaxLevel;
         levelFill.fillAmount = (float)model.Level / model.MaxLevel;
-        upgradeCost.text = CurrencyHelper.ToMoney(model.UpgradeCost);
-        generation.text = CurrencyHelper.ToMoney(model.GeneratingAmount) + " / " + model.Interval.ToString() + " sec.";
+        upgradeCost.text = CurrencyHelper.ToCurrency(model.UpgradeCost, model.UpgradeCurrency.Id);
+        generation.text = CurrencyHelper.ToCurrency(model.GeneratingAmount, model.GenerationCurrency.Id) + " / " + model.Interval.ToString() + " sec.";
 
         if (generatorModel.Id != currentId)
         {
@@ -55,7 +55,7 @@ public class SelectedGeneratorView : MonoBehaviour
 
     private void UpdateInfo(Generator_GenerateMessage message)
     {
-        capacity.text = CurrencyHelper.ToMoney(message.GeneratedAmount) +" / "+ CurrencyHelper.ToMoney(model.IdleCapacity);
+        capacity.text = CurrencyHelper.ToCurrency(message.GeneratedAmount,message.CurrencyType) +" / "+ CurrencyHelper.ToCurrency(model.IdleCapacity, model.GenerationCurrency.Id);
         capacityFill.fillAmount = message.GeneratedAmount / model.IdleCapacity;
 
         string amountMultiplierText = "";
@@ -69,7 +69,7 @@ public class SelectedGeneratorView : MonoBehaviour
         {
             speedMultiplierText = "<color=green> " +((model.Interval * message.SpeedMultiplier) - model.Interval).ToString("0.0") + "</color>";
         }
-        generation.text = CurrencyHelper.ToMoney(model.GeneratingAmount) +amountMultiplierText+ " / " + model.Interval.ToString() + speedMultiplierText+ " sec.";
+        generation.text = CurrencyHelper.ToCurrency(model.GeneratingAmount, model.GenerationCurrency.Id) +amountMultiplierText+ " / " + model.Interval.ToString() + speedMultiplierText+ " sec.";
     }
 
 

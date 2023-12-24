@@ -7,7 +7,8 @@ public class MissionModel
     public int Id;
     public string Name;
     public string Desc;
-    public Currency Reward;
+    public CurrencyType RewardCurrencyType;
+    public float Reward;
 
     public IMissionBehavior MissionBehavior;
 
@@ -16,6 +17,7 @@ public class MissionModel
         Id = data.Id;
         Name = data.Name;
         Desc = data.Desc;
+        RewardCurrencyType = data.RewardCurrencyType;
         Reward = data.Reward;
 
         MissionBehavior = data.GetBehavior();

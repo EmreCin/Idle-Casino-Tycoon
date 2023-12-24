@@ -7,7 +7,8 @@ public abstract class MissionBaseSO : ScriptableObject
     public int Id;
     public string Name;
     public string Desc;
-    public Currency Reward;
+    public CurrencyType RewardCurrencyType;
+    public float Reward;
 
     public abstract IMissionBehavior GetBehavior();
 }
