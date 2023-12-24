@@ -30,7 +30,7 @@ public static class CurrencyHelper
 
     private static string ToChip(float amount, bool isSignActive = true)
     {
-       return amount.ToString("0");
+       return (isSignActive ? "Chp" : "") + amount.ToString("0");
     }
 
 

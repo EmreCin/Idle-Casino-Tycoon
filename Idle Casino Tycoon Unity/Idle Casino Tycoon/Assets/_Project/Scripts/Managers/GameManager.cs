@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         MessageBroker.Default.Publish(new Wallet_Message(wallet));
         MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { BuyedDecorative(x.Model); })).AddTo(disposables);
+        MessageBroker.Default.Receive<Mission_ClaimMessage>().Subscribe(((x) => { MissionClaim(x); })).AddTo(disposables);
     }
     private void OnDestroy()
     {
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
     }
     void UnlockGenerator(GeneratorModel model)
     {
+        MessageBroker.Default.Publish(new Generator_UpdateMessage(model.Id, model.IsUnlocked,0));
         wallet.Spend(model.UpgradeCurrency.Id, model.UnlockCost);
     }
 
@@ -97,6 +99,12 @@ public class GameManager : MonoBehaviour
         wallet.Spend(model.UnlockCurrency, model.UnlockCost);
     }
 
+    void MissionClaim(Mission_ClaimMessage message)
+    {
+        MessageBroker.Default.Publish(new CurrencyMessage(message.CurrencyType, message.Amount));
+
+        wallet.Gain(message.CurrencyType, message.Amount);
+    }
     private void Update()
     {
         if (isWorldActive)

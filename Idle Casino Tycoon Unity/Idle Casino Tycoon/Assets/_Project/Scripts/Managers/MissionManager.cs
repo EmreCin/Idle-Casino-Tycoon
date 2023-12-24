@@ -18,8 +18,9 @@ public class MissionManager : MonoBehaviour
     private void Awake()
     {
         MessageBroker.Default.Receive<Mission_CompleteMessage>().Subscribe(((x) => { HandleCompleteMission(x); })).AddTo(disposables);
+        MessageBroker.Default.Receive<Mission_UpdateMessage>().Subscribe(((x) => { UpdateMission(x); })).AddTo(disposables);
 
-        foreach (var missionData in missionContainer.MissionList)
+        foreach (var missionData in missionContainer.MissionList.OrderBy(o => o.Id))
         {
             missionModelQueue.Enqueue(new MissionModel(missionData));
         }
@@ -40,6 +41,11 @@ public class MissionManager : MonoBehaviour
         disposables.Clear();
     }
 
+    void UpdateMission(Mission_UpdateMessage message)
+    {
+        missionItemViewList.FirstOrDefault(s => s.ItemViewId == message.Id).UpdateProgress(message.FillAmount);
+    }
+
     void HandleCompleteMission(Mission_CompleteMessage message)
     {
         if (message.IsClaimed)
@@ -48,6 +54,7 @@ public class MissionManager : MonoBehaviour
 
             currentModel.Remove(currentModel.FirstOrDefault(s => s.Id == message.Id));
             StartNewMission(message.Id);
+
         }
         else
         {
@@ -65,10 +72,10 @@ public class MissionManager : MonoBehaviour
         }
 
         var model = missionModelQueue.Dequeue();
-        model.MissionBehavior.MissionStart();
 
         missionItemViewList.FirstOrDefault(s=> s.ItemViewId == id).Init(model);
         currentModel.Add(model);
+        model.MissionBehavior.MissionStart();
     }
 
     IEnumerator DelayedClose(int id)

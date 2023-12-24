@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mission_UpdateMessage : MonoBehaviour
+public struct Mission_UpdateMessage 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int Id;
+    public float FillAmount;
 
-    // Update is called once per frame
-    void Update()
+    public Mission_UpdateMessage(int id, float fill)
     {
-        
+        Id = id;
+        FillAmount = fill;
     }
 }

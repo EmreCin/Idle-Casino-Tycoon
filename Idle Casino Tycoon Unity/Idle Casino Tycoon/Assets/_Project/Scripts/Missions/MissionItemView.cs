@@ -20,6 +20,8 @@ public class MissionItemView : MonoBehaviour
     public void Init(MissionModel model)
     {
         this.model = model;
+        claimButton.gameObject.SetActive(false);
+        progressBar.fillAmount = 0;
         missionDesc.text = model.Desc;
         rewardText.text = CurrencyHelper.ToCurrency(model.Reward, model.RewardCurrencyType);
         StartCoroutine(Begin());
@@ -44,12 +46,16 @@ public class MissionItemView : MonoBehaviour
         claimButton.onClick.AddListener(() => model.MissionBehavior.CompleteMission());
     }
 
+    public void UpdateProgress(float amount)
+    {
+        progressBar.fillAmount = amount;
+    }
     public void CompleteMission()
     {
         var originalPos = animationLayer.position.x;
         
         animationLayer.DOMoveX((originalPos - 1080), 0.5f).SetEase(Ease.InOutQuad).OnComplete(()=> {
-            claimButton.gameObject.SetActive(false);
+            //claimButton.gameObject.SetActive(false);
             animationLayer.gameObject.SetActive(false);
             animationLayer.position = new Vector3(originalPos, animationLayer.position.y, animationLayer.position.z);
         });
