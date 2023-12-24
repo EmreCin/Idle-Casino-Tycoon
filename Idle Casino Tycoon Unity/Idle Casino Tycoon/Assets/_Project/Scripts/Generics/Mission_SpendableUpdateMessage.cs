@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Generator_UpdateMessage 
+public struct Mission_SpendableUpdateMessage 
 {
-    public string GeneratorId;
+    public string SpendableId;
     public bool IsUnlocked;
     public int LevelUp;
-    public Generator_UpdateMessage(string id, bool isUnlocked, int levelUp)
+    public Mission_SpendableUpdateMessage(string id, bool isUnlocked, int levelUp)
     {
-        GeneratorId = id;
+        SpendableId = id;
         IsUnlocked = isUnlocked;
         LevelUp = levelUp;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class MissionUnlockGeneratorBehavior : IMissionBehavior
+public class MissionUnlockSpendableBehavior : IMissionBehavior
 {
     private string targetGeneratorId;
     private int id;
@@ -17,14 +17,14 @@ public class MissionUnlockGeneratorBehavior : IMissionBehavior
     bool isReadyToComplete;
 
 
-    public MissionUnlockGeneratorBehavior(int id, float reward, CurrencyType rewardCurrencyType, string target)
+    public MissionUnlockSpendableBehavior(int id, float reward, CurrencyType rewardCurrencyType, string target)
     {
         this.id = id;
         this.reward = reward;
         this.rewardCurrencyType = rewardCurrencyType;
         targetGeneratorId = target;
 
-        MessageBroker.Default.Receive<Generator_UpdateMessage>().Where(s => s.GeneratorId == targetGeneratorId).Subscribe(((x) => { Unlock(); })).AddTo(disposables);
+        MessageBroker.Default.Receive<Mission_SpendableUpdateMessage>().Where(s => s.SpendableId == targetGeneratorId).Subscribe(((x) => { Unlock(); })).AddTo(disposables);
     }
 
     public void MissionStart()
@@ -37,7 +37,6 @@ public class MissionUnlockGeneratorBehavior : IMissionBehavior
     private void Unlock()
     {
         isReadyToComplete = true;
-        //MessageBroker.Default.Publish(new Mission_UpdateMessage(id, 1));
 
         CheckMission();
     }
@@ -50,7 +49,6 @@ public class MissionUnlockGeneratorBehavior : IMissionBehavior
     {
         if (!isStarted || !isReadyToComplete) return;
         
-        Debug.LogError("ChangeState " + id.ToString());
         MessageBroker.Default.Publish(new Mission_CompleteMessage(id, false));
     }
 
@@ -58,7 +56,6 @@ public class MissionUnlockGeneratorBehavior : IMissionBehavior
     {
         if (!isReadyToComplete) return;
 
-        Debug.LogError("BEH CompleteMission " + id.ToString());
         MessageBroker.Default.Publish(new Mission_CompleteMessage(id, true));
         MessageBroker.Default.Publish(new Mission_ClaimMessage(rewardCurrencyType, reward));
 

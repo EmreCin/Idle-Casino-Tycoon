@@ -20,11 +20,12 @@ public class MissionMoneyCollectBehavior : IMissionBehavior
     bool isReadyToComplete;
 
 
-    public MissionMoneyCollectBehavior(int id, float reward,CurrencyType rewardCurrencyType, CurrencyType currency)
+    public MissionMoneyCollectBehavior(int id, float reward,CurrencyType rewardCurrencyType, CurrencyType currency, float target)
     {
         this.id = id;
         this.reward = reward;
         this.rewardCurrencyType = rewardCurrencyType;
+        amountTarget = target;
         currencyType = currency;
     }
 
@@ -56,7 +57,6 @@ public class MissionMoneyCollectBehavior : IMissionBehavior
     {
         if (isReadyToComplete) return;
         isReadyToComplete = true;
-        Debug.LogError("ChangeState " + id.ToString());
         MessageBroker.Default.Publish(new Mission_CompleteMessage(id, false));
     }
 
@@ -64,15 +64,9 @@ public class MissionMoneyCollectBehavior : IMissionBehavior
     {
         if (!isReadyToComplete) return;
 
-        Debug.LogError("BEH CompleteMission " + id.ToString());
         MessageBroker.Default.Publish(new Mission_CompleteMessage(id,true));
         MessageBroker.Default.Publish(new Mission_ClaimMessage(rewardCurrencyType, reward));
 
         disposables.Clear();
-    }
-
-    public void SetTarget(float target)
-    {
-        amountTarget = target;
     }
 }

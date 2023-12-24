@@ -12,8 +12,6 @@ public class MissionCollectMoney : MissionBaseSO
 
     public override IMissionBehavior GetBehavior()
     {
-        var behavior = new MissionMoneyCollectBehavior(Id, Reward, RewardCurrencyType, Currency);
-        behavior.SetTarget(AmountTarget);
-        return behavior;
+        return new MissionMoneyCollectBehavior(Id, Reward, RewardCurrencyType, Currency, AmountTarget); ;
     }
 }

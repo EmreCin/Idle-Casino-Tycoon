@@ -90,12 +90,13 @@ public class GameManager : MonoBehaviour
     }
     void UnlockGenerator(GeneratorModel model)
     {
-        MessageBroker.Default.Publish(new Generator_UpdateMessage(model.Id, model.IsUnlocked,0));
+        MessageBroker.Default.Publish(new Mission_SpendableUpdateMessage(model.Id, model.IsUnlocked,0));
         wallet.Spend(model.UpgradeCurrency.Id, model.UnlockCost);
     }
 
     void BuyedDecorative(DecorativeModel model)
     {
+        MessageBroker.Default.Publish(new Mission_SpendableUpdateMessage(model.Id, model.IsUnlocked, 0));
         wallet.Spend(model.UnlockCurrency, model.UnlockCost);
     }
 
