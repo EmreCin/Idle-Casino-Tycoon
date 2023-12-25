@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c80a351e1f002ef4fa39c8537914e682, type: 3}
+  m_Name: GambleOption_Chip
+  m_EditorClassIdentifier: 
+  StartWeight: 600
+  EndWeight: 900
+  GambleOption: 1
+  Icon: {fileID: 21300000, guid: 73de1815fb142994899a1fc2647d238f, type: 3}
+  RewardCurrency: 1
+  Reward: 10

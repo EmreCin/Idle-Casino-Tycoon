@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51027fb1a09faf041993ad06a7b881a7, type: 3}
+  m_Name: GambleConfig
+  m_EditorClassIdentifier: 
+  CostCurrency: 1
+  Cost: 1
+  OptionList:
+  - {fileID: 11400000, guid: f0aadd128303c2344b4a2ca30ae8f649, type: 2}
+  - {fileID: 11400000, guid: b14c289cd0596cb48b9f3b1a61b93e6e, type: 2}
+  - {fileID: 11400000, guid: 96a6e9f18fb66b64ca6e20a821dc0995, type: 2}
+  - {fileID: 11400000, guid: 91f4c63c2bf233f46be2c3f5e1a4cf37, type: 2}
+  - {fileID: 11400000, guid: b49ffe017254e214e99f0ed84b5f2f77, type: 2}
+  - {fileID: 11400000, guid: 48b0153590b1f554888f18237232c274, type: 2}
