@@ -18,7 +18,8 @@ public class MultiplierManager : MonoBehaviour
     private void Start()
     {
         MessageBroker.Default.Receive<GameManager_TimeMessage>().Subscribe(((x) => { GetTime(x); })).AddTo(disposables);
-        MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { BuyedDecorative(x.Model.MultiplierInstanceList); })).AddTo(disposables);
+        MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { AddMultiplier(x.Model.MultiplierInstanceList); })).AddTo(disposables);
+        MessageBroker.Default.Receive<AddMultiplierMessage>().Subscribe(((x) => { AddMultiplier(x.MultiplierList); })).AddTo(disposables);
         //TEST ****************************
         MultiplierInstance test1 = new MultiplierInstance("L1_SlotMachine_Level", MultiplierType.Amount, 0.25f, 30);
         MultiplierInstance test2 = new MultiplierInstance("L1_SlotMachine_Formula", MultiplierType.Speed, 0.1f, 3);
@@ -70,7 +71,7 @@ public class MultiplierManager : MonoBehaviour
        
     }
 
-    private void BuyedDecorative(List<MultiplierInstance> multiplierList)
+    private void AddMultiplier(List<MultiplierInstance> multiplierList)
     {
         foreach (var item in multiplierList)
         {

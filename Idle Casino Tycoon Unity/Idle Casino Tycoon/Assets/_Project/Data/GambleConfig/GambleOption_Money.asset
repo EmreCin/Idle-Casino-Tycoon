@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GambleOption_Money
   m_EditorClassIdentifier: 
   StartWeight: 400
-  EndWeight: 700
+  EndWeight: 550
   GambleOption: 0
   Icon: {fileID: 21300000, guid: 6d2157c913a4c0f44ba82728f4862de3, type: 3}
   RewardCurrency: 0

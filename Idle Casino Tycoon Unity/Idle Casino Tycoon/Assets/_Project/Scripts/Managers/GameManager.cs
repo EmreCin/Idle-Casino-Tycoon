@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         MessageBroker.Default.Publish(new Wallet_Message(wallet));
         MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { BuyedDecorative(x.Model); })).AddTo(disposables);
         MessageBroker.Default.Receive<Mission_ClaimMessage>().Subscribe(((x) => { MissionClaim(x); })).AddTo(disposables);
+        MessageBroker.Default.Receive<Gamble_SpinMessage>().Subscribe(((x) => { Spin(); })).AddTo(disposables);
     }
     private void OnDestroy()
     {
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
     private void Init()
     {
         Currency test = new Currency(CurrencyType.Money, 0);
-        Currency test2 = new Currency(CurrencyType.Chip, 0);
+        Currency test2 = new Currency(CurrencyType.Chip, 10);
         Currency test3 = new Currency(CurrencyType.Gem, 0);
         List<Currency> testList = new List<Currency>();
         testList.Add(test);
@@ -108,6 +109,19 @@ public class GameManager : MonoBehaviour
 
         wallet.Gain(message.CurrencyType, message.Amount);
     }
+
+    void Spin()
+    {
+        wallet.Spend(CurrencyType.Chip,1);
+    }
+
+    void SpinWin(Mission_ClaimMessage message)
+    {
+        MessageBroker.Default.Publish(new CurrencyMessage(message.CurrencyType, message.Amount));
+
+        wallet.Gain(message.CurrencyType, message.Amount);
+    }
+
     private void Update()
     {
         if (isWorldActive)

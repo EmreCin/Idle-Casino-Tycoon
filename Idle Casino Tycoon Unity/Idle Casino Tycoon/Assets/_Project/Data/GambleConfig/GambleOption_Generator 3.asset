@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GambleOption_Generator 3
   m_EditorClassIdentifier: 
   StartWeight: 300
-  EndWeight: 600
-  GambleOption: 2
+  EndWeight: 550
+  GambleOption: 4
   Icon: {fileID: 21300000, guid: 675c7dbff0a5ad245b36a56093fd4054, type: 3}
   GeneratorId: 
   MultiplierType: 1
