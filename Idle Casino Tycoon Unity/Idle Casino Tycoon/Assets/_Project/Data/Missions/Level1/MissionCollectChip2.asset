@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965454aab3cfb7542a0a92db9780fb4b, type: 3}
   m_Name: MissionCollectChip2
   m_EditorClassIdentifier: 
-  Id: 2
+  Id: 3
   Name: Collect Chip
   Desc: Collect 1 Chip
   RewardCurrencyType: 0
