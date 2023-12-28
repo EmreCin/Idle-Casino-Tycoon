@@ -9,7 +9,7 @@ public class GambleOptionSO : ScriptableObject
     public float EndWeight;
     public GambleOption GambleOption;
     public Sprite Icon;
-    
+    public string WinMessage;
 }
 
 
