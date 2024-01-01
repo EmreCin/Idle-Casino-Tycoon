@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e73b9d377572104bb741aae1e45473c, type: 3}
+  m_Name: Level1_Poker_ByLevel
+  m_EditorClassIdentifier: 
+  Id: L1_Poker_Level
+  Name: Poker
+  GeneratorPosition: {x: 1.14, y: -1.47, z: 0}
+  Visual: {fileID: 6820734072242534703, guid: e6a438bdd0d8706499c971aae52e0e6b, type: 3}
+  View: {fileID: 7380626876617156701, guid: ecc2d839379d75741ba5bf2163bb8afd, type: 3}
+  MaxLevel: 10
+  UnlockCost: 500
+  IsUnlocked: 0
+  UpgradeCurrency: 0
+  GenerationCurrency: 0
+  LevelDataList:
+  - Level: 1
+    IdleCapacity: 1000
+    Interval: 6
+    GeneratingAmount: 50
+    UpgradeCost: 550
+  - Level: 2
+    IdleCapacity: 1300
+    Interval: 5.5
+    GeneratingAmount: 60
+    UpgradeCost: 600
+  - Level: 3
+    IdleCapacity: 1400
+    Interval: 5.2
+    GeneratingAmount: 70
+    UpgradeCost: 750
+  - Level: 4
+    IdleCapacity: 1500
+    Interval: 5.1
+    GeneratingAmount: 80
+    UpgradeCost: 900
+  - Level: 5
+    IdleCapacity: 1500
+    Interval: 5
+    GeneratingAmount: 100
+    UpgradeCost: 1250
+  - Level: 6
+    IdleCapacity: 1750
+    Interval: 5
+    GeneratingAmount: 110
+    UpgradeCost: 1350
+  - Level: 7
+    IdleCapacity: 2000
+    Interval: 5
+    GeneratingAmount: 125
+    UpgradeCost: 1500
+  - Level: 8
+    IdleCapacity: 2200
+    Interval: 4.9
+    GeneratingAmount: 150
+    UpgradeCost: 1750
+  - Level: 9
+    IdleCapacity: 2300
+    Interval: 4.9
+    GeneratingAmount: 175
+    UpgradeCost: 2000
+  - Level: 10
+    IdleCapacity: 3000
+    Interval: 4.5
+    GeneratingAmount: 200
+    UpgradeCost: 2500

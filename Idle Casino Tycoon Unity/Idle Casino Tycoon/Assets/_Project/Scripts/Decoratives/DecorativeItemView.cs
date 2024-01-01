@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class DecorativeItemView : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text nameText;
     [SerializeField] TMPro.TMP_Text unlockedCostText;
+    [SerializeField] Image icon;
     [SerializeField] Button unlockButton;
     
     DecorativeModel model;
@@ -20,6 +22,7 @@ public class DecorativeItemView : MonoBehaviour
         this.model = model;
 
         nameText.text = model.Name;
+        icon.sprite = model.SpriteList.FirstOrDefault();
 
         CheckUnlock();
         
@@ -46,7 +49,7 @@ public class DecorativeItemView : MonoBehaviour
         else
         {
             unlockButton.onClick.AddListener(() => SelectToUnlock());
-            unlockedCostText.text = CurrencyHelper.ToCurrency(model.UnlockCost, model.UnlockCurrency);
+            unlockedCostText.text = "Buy\n"+CurrencyHelper.ToCurrency(model.UnlockCost, model.UnlockCurrency);
         }
             
     }

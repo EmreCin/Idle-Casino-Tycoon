@@ -39,13 +39,13 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        Currency test = new Currency(CurrencyType.Money, 0);
-        Currency test2 = new Currency(CurrencyType.Chip, 10);
-        Currency test3 = new Currency(CurrencyType.Gem, 0);
+        Currency c1 = new Currency(CurrencyType.Money, 0);
+        Currency c2 = new Currency(CurrencyType.Chip, 3);
+        Currency c3 = new Currency(CurrencyType.Gem, 0);
         List<Currency> testList = new List<Currency>();
-        testList.Add(test);
-        testList.Add(test2);
-        testList.Add(test3);
+        testList.Add(c1);
+        testList.Add(c2);
+        testList.Add(c3);
 
         wallet = new Wallet(testList);
 

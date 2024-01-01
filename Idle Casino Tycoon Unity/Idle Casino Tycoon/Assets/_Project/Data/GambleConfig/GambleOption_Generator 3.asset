@@ -15,7 +15,7 @@ MonoBehaviour:
   StartWeight: 300
   EndWeight: 550
   GambleOption: 4
-  Icon: {fileID: 21300000, guid: 675c7dbff0a5ad245b36a56093fd4054, type: 3}
+  Icon: {fileID: 21300000, guid: 1a77f3a9dea705c4e82886b3fc61688f, type: 3}
   WinMessage: Generator boosted
   GeneratorId: 
   MultiplierType: 1

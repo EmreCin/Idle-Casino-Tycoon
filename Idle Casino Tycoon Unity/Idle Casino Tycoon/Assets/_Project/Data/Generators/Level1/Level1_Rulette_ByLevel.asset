@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e73b9d377572104bb741aae1e45473c, type: 3}
+  m_Name: Level1_Rulette_ByLevel
+  m_EditorClassIdentifier: 
+  Id: L1_Rulette_Level
+  Name: Rulette
+  GeneratorPosition: {x: -1.46, y: -1.62, z: 0}
+  Visual: {fileID: 6820734072242534703, guid: e0d0642b14a10d7458732f313ed97ae6, type: 3}
+  View: {fileID: 7380626876617156701, guid: ecc2d839379d75741ba5bf2163bb8afd, type: 3}
+  MaxLevel: 10
+  UnlockCost: 2000
+  IsUnlocked: 0
+  UpgradeCurrency: 0
+  GenerationCurrency: 0
+  LevelDataList:
+  - Level: 1
+    IdleCapacity: 1000
+    Interval: 10
+    GeneratingAmount: 75
+    UpgradeCost: 2000
+  - Level: 2
+    IdleCapacity: 1200
+    Interval: 10
+    GeneratingAmount: 90
+    UpgradeCost: 2100
+  - Level: 3
+    IdleCapacity: 1300
+    Interval: 10
+    GeneratingAmount: 100
+    UpgradeCost: 2200
+  - Level: 4
+    IdleCapacity: 1400
+    Interval: 10
+    GeneratingAmount: 110
+    UpgradeCost: 2300
+  - Level: 5
+    IdleCapacity: 1500
+    Interval: 9
+    GeneratingAmount: 150
+    UpgradeCost: 2500
+  - Level: 6
+    IdleCapacity: 1600
+    Interval: 9
+    GeneratingAmount: 160
+    UpgradeCost: 2600
+  - Level: 7
+    IdleCapacity: 1700
+    Interval: 8.5
+    GeneratingAmount: 200
+    UpgradeCost: 2750
+  - Level: 8
+    IdleCapacity: 2000
+    Interval: 8.5
+    GeneratingAmount: 220
+    UpgradeCost: 2850
+  - Level: 9
+    IdleCapacity: 2200
+    Interval: 8.5
+    GeneratingAmount: 230
+    UpgradeCost: 2950
+  - Level: 10
+    IdleCapacity: 3500
+    Interval: 8
+    GeneratingAmount: 250
+    UpgradeCost: 3500

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1138974b257ac2640828a61486b379da, type: 3}
-  m_Name: SlotMachineChairs
+  m_Name: Level1_Bars
   m_EditorClassIdentifier: 
-  Id: SlotMachineChairs
-  Name: Slot Machine Chairs
-  Desc: Increase generating speed of the slot machines.
-  DecorativePosition: {x: 1, y: 2, z: 0}
-  Visual: {fileID: 7561974841604411825, guid: b866adbd5cd7b9547ba07f68b6e394c7, type: 3}
+  Id: Level1_Bars
+  Name: Bar
+  Desc: Increase all generators speed.
+  DecorativePosition: {x: -1.99, y: 0.84, z: 0}
+  Visual: {fileID: 1957602914019505617, guid: 628dbfc7276bf55498b474223511c311, type: 3}
   UnlockCost: 100
   IsUnlocked: 0
   UnlockCurrency: 0
@@ -24,9 +24,10 @@ MonoBehaviour:
   - MultiplierType: 0
     Multiplier: 0.1
   EffectedGeneratorList:
+  - L1_Poker_Level
+  - L1_Rulette_Level
   - L1_SlotMachine_Formula
-  - L1_SlotMachine_Level
   VisualOptions:
-  - {fileID: 21300000, guid: fbe00f86facd40941ba2597bee53efc5, type: 3}
-  - {fileID: 21300000, guid: e09ce17a31cbeae40b8a3430e04abbf5, type: 3}
-  - {fileID: 21300000, guid: ce724b6e2e8e1b849972139a8e8bde46, type: 3}
+  - {fileID: 21300000, guid: 27425bc3ab7ac0a4894535689df43b3a, type: 3}
+  - {fileID: 21300000, guid: 419b64ff4f92b5d42bdb5b0a37eac66e, type: 3}
+  - {fileID: 21300000, guid: bfa24c9b7646e6642b297e9badbf42f4, type: 3}

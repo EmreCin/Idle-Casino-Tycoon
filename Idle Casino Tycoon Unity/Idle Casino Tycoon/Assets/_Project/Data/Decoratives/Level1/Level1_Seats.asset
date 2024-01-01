@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1138974b257ac2640828a61486b379da, type: 3}
-  m_Name: CasinoEnterance
+  m_Name: Level1_Seats
   m_EditorClassIdentifier: 
-  Id: CasinoEnterance
-  Name: Casino Enterance
+  Id: Level1_Seats
+  Name: Seats
   Desc: Increase generation amount for all the generators.
-  DecorativePosition: {x: -1, y: 2, z: 0}
+  DecorativePosition: {x: 0.09, y: 1.81, z: 0}
   Visual: {fileID: 3585068481228091425, guid: dbcf81e33e234f44b8e85ed751514c73, type: 3}
   UnlockCost: 50
   IsUnlocked: 0
@@ -25,6 +25,6 @@ MonoBehaviour:
     Multiplier: 0.25
   EffectedGeneratorList: []
   VisualOptions:
-  - {fileID: 21300000, guid: ce724b6e2e8e1b849972139a8e8bde46, type: 3}
-  - {fileID: 21300000, guid: e09ce17a31cbeae40b8a3430e04abbf5, type: 3}
-  - {fileID: 21300000, guid: fbe00f86facd40941ba2597bee53efc5, type: 3}
+  - {fileID: 21300000, guid: 44239e0bb22cc1440b39a6d9fffb07dc, type: 3}
+  - {fileID: 21300000, guid: f6a8fcca51b2d524faafd25e5c047e93, type: 3}
+  - {fileID: 21300000, guid: 0914c72715d557b4e8d6ae0280d0ca4e, type: 3}
