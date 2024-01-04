@@ -19,15 +19,16 @@ public class GambleManager : MonoBehaviour
 
     private void Awake()
     {
+        spinButton.onClick.RemoveAllListeners();
         spinButton.onClick.AddListener(() => {
             Spin();
             foreach (var spinner in spinnerList)
             {
-                if(spinner.ResultSpinner) spinner.SpinFinished.Subscribe(x => HandleSpinResult()).AddTo(disposables);
                 spinner.Spin();
             }
         });
 
+        spinnerList.FirstOrDefault(s=> s.ResultSpinner).SpinFinished.Subscribe(x => HandleSpinResult()).AddTo(disposables);
         MessageBroker.Default.Receive<Wallet_Message>().Subscribe(((x) => { GetWallet(x.Wallet); })).AddTo(disposables);
     }
 
