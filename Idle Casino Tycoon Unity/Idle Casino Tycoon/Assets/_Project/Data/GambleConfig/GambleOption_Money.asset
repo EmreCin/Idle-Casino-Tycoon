@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GambleOption_Money
   m_EditorClassIdentifier: 
   StartWeight: 400
-  EndWeight: 550
+  EndWeight: 400
   GambleOption: 0
   Icon: {fileID: 21300000, guid: 0ccf022ff1e91d4469a7109059a8997c, type: 3}
   WinMessage: You earn $1000

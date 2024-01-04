@@ -16,6 +16,6 @@ MonoBehaviour:
   EndWeight: 750
   GambleOption: 1
   Icon: {fileID: 21300000, guid: c32048548aa56134b91f75bb7f6a72dc, type: 3}
-  WinMessage: You earn 10 Chips
+  WinMessage: You earn 5 Chips
   RewardCurrency: 1
-  Reward: 10
+  Reward: 5
