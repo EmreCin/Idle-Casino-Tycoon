@@ -70,7 +70,7 @@ public class GeneratorController : MonoBehaviour
         this.model = model;
         behavior.UpdateModel(this.model);
 
-        MessageBroker.Default.Publish(new GeneratorController_SelectedMessage(model));
+        //MessageBroker.Default.Publish(new GeneratorController_SelectedMessage(model));
     }
    
 
