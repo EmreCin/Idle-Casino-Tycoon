@@ -13,9 +13,10 @@ public class DecorativeViewController : MonoBehaviour
     private CompositeDisposable disposables = new CompositeDisposable();
 
     List<DecorativeItemView> decorativeItemList = new List<DecorativeItemView>();
-
+    Vector3 originalPos = Vector3.one * -1;
     private void Awake()
     {
+        
         MessageBroker.Default.Receive<Decorative_BuyMessage>().Subscribe(((x) => { Buyed(x.Model); })).AddTo(disposables);
     }
 
@@ -30,6 +31,7 @@ public class DecorativeViewController : MonoBehaviour
 
             decorativeItemList.Add(itemView);
         }
+       
     }
 
     void Buyed(DecorativeModel model)
@@ -51,7 +53,7 @@ public class DecorativeViewController : MonoBehaviour
 
     void On()
     {
-        Vector3 originalPos = gameObject.transform.position;
+        if(originalPos == Vector3.one * -1) originalPos = gameObject.transform.position;
         gameObject.transform.position = new Vector3(originalPos.x, originalPos.y - 700, originalPos.z);
         gameObject.transform.DOMove(originalPos, 0.5f).SetEase(Ease.InOutQuad);
 
@@ -59,7 +61,7 @@ public class DecorativeViewController : MonoBehaviour
     }
     void Off()
     {
-        Vector3 originalPos = gameObject.transform.position;
+        if (originalPos == Vector3.one * -1) originalPos = gameObject.transform.position;
         gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 700, gameObject.transform.position.z), 0.5f).SetEase(Ease.InBack)
             .OnComplete(() => {
                 gameObject.SetActive(false);
