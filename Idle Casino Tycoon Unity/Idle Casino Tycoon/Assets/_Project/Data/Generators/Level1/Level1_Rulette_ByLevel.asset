@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: L1_Rulette_Level
   Name: Rulette
-  GeneratorPosition: {x: -1.46, y: -1.62, z: 0}
+  GeneratorPosition: {x: -1.46, y: -2.228, z: 0}
   Visual: {fileID: 6820734072242534703, guid: e0d0642b14a10d7458732f313ed97ae6, type: 3}
-  View: {fileID: 7380626876617156701, guid: ecc2d839379d75741ba5bf2163bb8afd, type: 3}
+  View: {fileID: 7380626876617156701, guid: ff5c8459f09741a45aa7a7c05ff0d002, type: 3}
   MaxLevel: 10
   UnlockCost: 2000
   IsUnlocked: 0

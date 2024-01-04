@@ -35,11 +35,11 @@ RectTransform:
   m_Father: {fileID: 6888012597281762155}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &3336287362568327300
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1384,7 +1384,7 @@ GameObject:
   - component: {fileID: 7380626876617156700}
   - component: {fileID: 7380626876617156701}
   m_Layer: 0
-  m_Name: SlotMachineView
+  m_Name: RuletteView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
