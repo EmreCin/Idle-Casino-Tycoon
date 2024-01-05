@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "902069624678",
+    "project_id": "hummingbird-casino",
+    "storage_bucket": "hummingbird-casino.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902069624678:android:7bcb6e071da8e2f8d832a7",
+        "android_client_info": {
+          "package_name": "com.SuperNeva.HummingBirdCasino"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZkPpyb7dFx4EzWY14oqTs1LlB463mAgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

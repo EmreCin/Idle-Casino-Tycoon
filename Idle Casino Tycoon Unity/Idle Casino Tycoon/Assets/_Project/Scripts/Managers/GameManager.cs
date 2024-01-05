@@ -91,17 +91,23 @@ public class GameManager : MonoBehaviour
         generatorList.FirstOrDefault(s => s.Id == upgradedModel.Id)?.UpdateModel(upgradedModel);
 
         MessageBroker.Default.Publish(new Mission_SpendableUpdateMessage(model.Id, model.IsUnlocked, 1));
+
+        FirebaseManager.Instance.LogGenericEventWithParameter("levelup",new Dictionary<string, string>() { { "id", model.Id }, { "level", model.Level.ToString() } });
     }
     void UnlockGenerator(GeneratorModel model)
     {
         MessageBroker.Default.Publish(new Mission_SpendableUpdateMessage(model.Id, model.IsUnlocked,0));
         wallet.Spend(model.UpgradeCurrency.Id, model.UnlockCost);
+
+        FirebaseManager.Instance.LogGenericEventWithParameter("unlock_generator", new Dictionary<string, string>() { {"id", model.Id } });
     }
 
     void BuyedDecorative(DecorativeModel model)
     {
         MessageBroker.Default.Publish(new Mission_SpendableUpdateMessage(model.Id, model.IsUnlocked, 0));
         wallet.Spend(model.UnlockCurrency, model.UnlockCost);
+
+        FirebaseManager.Instance.LogGenericEventWithParameter("buy_decorative", new Dictionary<string, string>() { { "id", model.Id } });
     }
 
     void MissionClaim(Mission_ClaimMessage message)
@@ -114,6 +120,8 @@ public class GameManager : MonoBehaviour
     void Spin()
     {
         wallet.Spend(CurrencyType.Chip,1);
+
+        FirebaseManager.Instance.LogGenericEvent("spin");
     }
 
     void SpinWin(Mission_ClaimMessage message)
