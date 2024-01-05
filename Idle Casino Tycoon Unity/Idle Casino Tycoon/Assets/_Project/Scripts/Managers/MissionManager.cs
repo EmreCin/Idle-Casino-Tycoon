@@ -43,7 +43,8 @@ public class MissionManager : MonoBehaviour
 
     void UpdateMission(Mission_UpdateMessage message)
     {
-        missionItemViewList.FirstOrDefault(s => s.ItemViewId == message.Id).UpdateProgress(message.FillAmount);
+        if (missionItemViewList.FirstOrDefault(s => s.ItemViewId == message.Id) != null)
+            missionItemViewList.FirstOrDefault(s => s.ItemViewId == message.Id).UpdateProgress(message.FillAmount);
     }
 
     void HandleCompleteMission(Mission_CompleteMessage message)
