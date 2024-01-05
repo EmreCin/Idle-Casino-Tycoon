@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c80a351e1f002ef4fa39c8537914e682, type: 3}
-  m_Name: GambleOption_Money
+  m_Script: {fileID: 11500000, guid: 74a4adc6eda2b884b99203a37a456c71, type: 3}
+  m_Name: MissionLevelUpGenerator_SlotMachineLevel6
   m_EditorClassIdentifier: 
-  StartWeight: 300
-  EndWeight: 500
-  GambleOption: 0
-  Icon: {fileID: 21300000, guid: 0ccf022ff1e91d4469a7109059a8997c, type: 3}
-  WinMessage: You earn $1000
-  RewardCurrency: 0
+  Id: 6
+  Name: L1_SlotMachine_Formula
+  Desc: Level Up Slot Machine To 5
+  RewardCurrencyType: 0
   Reward: 1000
+  AmountTarget: 5
+  GeneratorId: L1_SlotMachine_Formula

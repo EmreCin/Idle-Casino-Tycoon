@@ -17,7 +17,7 @@ MonoBehaviour:
   Desc: Increase generation amount for all the generators.
   DecorativePosition: {x: 0.09, y: 1.81, z: 0}
   Visual: {fileID: 3585068481228091425, guid: dbcf81e33e234f44b8e85ed751514c73, type: 3}
-  UnlockCost: 50
+  UnlockCost: 500
   IsUnlocked: 0
   UnlockCurrency: 0
   MultiplierEffectList:

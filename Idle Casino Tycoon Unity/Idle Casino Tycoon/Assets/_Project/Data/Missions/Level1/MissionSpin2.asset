@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 965454aab3cfb7542a0a92db9780fb4b, type: 3}
-  m_Name: MissionCollectChip2
+  m_Script: {fileID: 11500000, guid: ebbb8fc3554eff846a4bdf6e328ebad7, type: 3}
+  m_Name: MissionSpin2
   m_EditorClassIdentifier: 
-  Id: 3
-  Name: Collect Chip
-  Desc: Collect 1 Chip
+  Id: 2
+  Name: Spin
+  Desc: Spend 1 Chip
   RewardCurrencyType: 0
   Reward: 100
   AmountTarget: 1
-  Currency: 1

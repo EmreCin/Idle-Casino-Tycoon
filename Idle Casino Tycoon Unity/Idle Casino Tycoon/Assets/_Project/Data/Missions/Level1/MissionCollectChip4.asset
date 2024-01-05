@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a4adc6eda2b884b99203a37a456c71, type: 3}
-  m_Name: MissionLevelUpGenerator_SlotMachineLevel
+  m_Script: {fileID: 11500000, guid: 965454aab3cfb7542a0a92db9780fb4b, type: 3}
+  m_Name: MissionCollectChip4
   m_EditorClassIdentifier: 
-  Id: 2
-  Name: Level Up Slot Machine To 3
-  Desc: Level Up Slot Machine To 3
+  Id: 4
+  Name: Collect Chip
+  Desc: Collect 1 Chip
   RewardCurrencyType: 0
-  Reward: 20
-  AmountTarget: 3
-  GeneratorId: L1_SlotMachine_Level
+  Reward: 100
+  AmountTarget: 1
+  Currency: 1

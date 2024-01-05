@@ -17,7 +17,7 @@ MonoBehaviour:
   Desc: Increase all generators speed.
   DecorativePosition: {x: -1.99, y: 0.84, z: 0}
   Visual: {fileID: 1957602914019505617, guid: 628dbfc7276bf55498b474223511c311, type: 3}
-  UnlockCost: 100
+  UnlockCost: 250
   IsUnlocked: 0
   UnlockCurrency: 0
   MultiplierEffectList:

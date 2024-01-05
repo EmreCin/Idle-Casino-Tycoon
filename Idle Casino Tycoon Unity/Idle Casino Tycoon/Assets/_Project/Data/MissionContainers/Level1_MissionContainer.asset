@@ -14,5 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissionList:
   - {fileID: 11400000, guid: ac9a7ad409228bf428ba1a7718785f57, type: 2}
-  - {fileID: 11400000, guid: 92d946903e0472f478ef19c54edcf100, type: 2}
+  - {fileID: 11400000, guid: 94e82ee39b3288b419ab5a2a3d9b9a7b, type: 2}
+  - {fileID: 11400000, guid: 49491e4a6db3c5b46ba5cf2d2087f97e, type: 2}
   - {fileID: 11400000, guid: 63b7d7ddd962ec946b11b1eadfb2837d, type: 2}
+  - {fileID: 11400000, guid: b74625f40bf155f45922d2c4090a05a8, type: 2}
+  - {fileID: 11400000, guid: 92d946903e0472f478ef19c54edcf100, type: 2}
+  - {fileID: 11400000, guid: b0dfb3ea62bc60f44ada6050343a2ff5, type: 2}
+  - {fileID: 11400000, guid: bda6b8dfc06716940998679a15d54cac, type: 2}
+  - {fileID: 11400000, guid: 4cfde40c3106d7e45beaa8f40a0b3850, type: 2}
+  - {fileID: 11400000, guid: be9cb7e83cb404b42833290727b9807d, type: 2}

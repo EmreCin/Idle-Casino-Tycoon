@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbb8fc3554eff846a4bdf6e328ebad7, type: 3}
-  m_Name: MissionSpin4
+  m_Script: {fileID: 11500000, guid: 965454aab3cfb7542a0a92db9780fb4b, type: 3}
+  m_Name: MissionCollectMoney9
   m_EditorClassIdentifier: 
-  Id: 4
-  Name: Spin
-  Desc: Spin
-  RewardCurrencyType: 0
-  Reward: 100
-  AmountTarget: 1
+  Id: 9
+  Name: Collect Money
+  Desc: Collect $1K
+  RewardCurrencyType: 1
+  Reward: 3
+  AmountTarget: 1000
+  Currency: 0

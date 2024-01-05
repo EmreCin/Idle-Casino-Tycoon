@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d1e32853d059f408e73dde27749bb0, type: 3}
   m_Name: GambleOption_Generator 1
   m_EditorClassIdentifier: 
-  StartWeight: 100
+  StartWeight: 0
   EndWeight: 250
   GambleOption: 2
   Icon: {fileID: 21300000, guid: ec174098d9684da4ea02c1c1eafb2bfb, type: 3}

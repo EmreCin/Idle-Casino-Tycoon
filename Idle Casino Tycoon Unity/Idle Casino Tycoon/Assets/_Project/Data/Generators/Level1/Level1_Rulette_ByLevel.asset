@@ -18,7 +18,7 @@ MonoBehaviour:
   Visual: {fileID: 6820734072242534703, guid: e0d0642b14a10d7458732f313ed97ae6, type: 3}
   View: {fileID: 7380626876617156701, guid: ff5c8459f09741a45aa7a7c05ff0d002, type: 3}
   MaxLevel: 10
-  UnlockCost: 2000
+  UnlockCost: 1000
   IsUnlocked: 0
   UpgradeCurrency: 0
   GenerationCurrency: 0

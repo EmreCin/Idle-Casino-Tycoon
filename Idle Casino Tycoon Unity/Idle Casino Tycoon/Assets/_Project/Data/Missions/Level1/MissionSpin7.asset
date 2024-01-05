@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34303db1f0fe7e43819b4ee1b415101, type: 3}
-  m_Name: MissionUnlockGenerator_SlotMachine_Level3
+  m_Script: {fileID: 11500000, guid: ebbb8fc3554eff846a4bdf6e328ebad7, type: 3}
+  m_Name: MissionSpin7
   m_EditorClassIdentifier: 
-  Id: 3
-  Name: Unlock  Slot Machine Level
-  Desc: Unlock  Slot Machine Level
-  RewardCurrencyType: 1
-  Reward: 1
-  SpendableId: L1_SlotMachine_Level
+  Id: 7
+  Name: Spin
+  Desc: Spend 1 Chip
+  RewardCurrencyType: 0
+  Reward: 1000
+  AmountTarget: 1

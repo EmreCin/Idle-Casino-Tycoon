@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34303db1f0fe7e43819b4ee1b415101, type: 3}
-  m_Name: MissionUnlockDecorative_CasinoEnterance4
+  m_Name: MissionUnlockGenerator_L1_Poker_Level3
   m_EditorClassIdentifier: 
-  Id: 4
-  Name: CasinoEnterance
-  Desc: CasinoEnterance
+  Id: 3
+  Name: Unlock  L1_Poker_Level
+  Desc: Unlock  Poker Table
   RewardCurrencyType: 1
   Reward: 1
-  SpendableId: CasinoEnterance
+  SpendableId: L1_Poker_Level

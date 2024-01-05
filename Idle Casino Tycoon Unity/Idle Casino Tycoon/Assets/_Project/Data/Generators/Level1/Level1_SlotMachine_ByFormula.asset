@@ -26,7 +26,7 @@ MonoBehaviour:
   IdleCapacity_LevelMultiplier: 1.25
   Interval_Base: 5
   Interval_LevelMultiplier: 1.05
-  GeneratingAmount_Base: 10
+  GeneratingAmount_Base: 15
   GeneratingAmount_LevelMultiplier: 1.1
   UpgradeCost_Base: 100
   UpgradeCost_LevelMultiplier: 1.1
